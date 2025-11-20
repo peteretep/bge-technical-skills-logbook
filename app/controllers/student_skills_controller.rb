@@ -9,24 +9,32 @@ class StudentSkillsController < ApplicationController
       skill: @skill
     )
 
-    if @student_skill.persisted?
-      if @student_skill.demonstrated?
-        @student_skill.unmark_demonstrated!
-      else
-        @student_skill.mark_demonstrated!(current_user)
-      end
+    # Toggle the demonstrated status
+    if params[:demonstrated]
+      @student_skill.demonstrated = true
+      @student_skill.demonstrated_at = Date.today
     else
-      @student_skill.mark_demonstrated!(current_user)
-      @student_skill.save!
+      @student_skill.demonstrated = false
+      @student_skill.demonstrated_at = nil
     end
-
-    # Reload to ensure we have fresh data
-    @student_skill.reload
-    @skill.reload if @skill.changed?
-
+    
+    @student_skill.save!
+    
+    # Get the section for this skill
+    @section = @skill.section
+    @level = @skill.level
+    
+    # Calculate updated counts
+    @demonstrated_count = @student.demonstrated_skills_for(@section, @level).count
+    @total_skills = @section.skills.where(level: @level).count
+    @percentage = @total_skills > 0 ? (@demonstrated_count.to_f / @total_skills * 100).round : 0
+    
+    # Check badge status
+    @has_badge = @student.has_badge?(@section, @level)
+    @ready_for_badge = @student.ready_for_badge?(@section, @level) && !@has_badge
+    
     respond_to do |format|
       format.turbo_stream
-      format.html { redirect_to student_path(@student) }
     end
   end
 
@@ -38,9 +46,8 @@ class StudentSkillsController < ApplicationController
   end
 
   def authorize_student_access
-    unless @student && @student.user == current_user
-      redirect_to root_path, alert: 'You do not have permission to access this student.'
+    unless @student && @student.classroom.user == current_user
+      head :forbidden
     end
   end
 end
-
