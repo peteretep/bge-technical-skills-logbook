@@ -168,6 +168,7 @@ GEM
     parser (3.3.10.0)
       ast (~> 2.4.1)
       racc
+    pg (1.6.2)
     pg (1.6.2-x86_64-linux)
     pp (0.6.3)
       prettyprint
@@ -283,6 +284,7 @@ GEM
     tailwindcss-rails (4.4.0)
       railties (>= 7.0.0)
       tailwindcss-ruby (~> 4.0)
+    tailwindcss-ruby (4.1.16)
     tailwindcss-ruby (4.1.16-x86_64-linux)
     thor (1.4.0)
     timeout (0.4.4)
@@ -313,6 +315,7 @@ GEM
     zeitwerk (2.6.18)
 
 PLATFORMS
+  ruby
   x86_64-linux
 
 DEPENDENCIES
