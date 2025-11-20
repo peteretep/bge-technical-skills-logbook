@@ -1,0 +1,199 @@
+<div class="space-y-6">
+  <!-- Breadcrumb Navigation -->
+  <nav class="flex" aria-label="Breadcrumb">
+    <ol class="inline-flex items-center space-x-1 md:space-x-3">
+      <li class="inline-flex items-center">
+        <%= link_to root_path, class: "text-gray-700 hover:text-primary" do %>
+          <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20"><path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"></path></svg>
+          Dashboard
+        <% end %>
+      </li>
+      <li>
+        <div class="flex items-center">
+          <svg class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+          <span class="text-gray-500 font-medium"><%= @classroom.full_name %></span>
+        </div>
+      </li>
+    </ol>
+  </nav>
+
+  <!-- Header -->
+  <div class="bg-white rounded-lg shadow-md p-6 border border-gray-200">
+    <h1 class="text-4xl font-bold text-gray-900 mb-2"><%= @classroom.full_name %></h1>
+    <p class="text-gray-600">
+      <span class="font-medium"><%= @students.count %></span> 
+      <%= 'student'.pluralize(@students.count) %>
+    </p>
+  </div>
+
+  <!-- Students Table -->
+  <div class="bg-white rounded-lg shadow-md border border-gray-200 overflow-hidden">
+    <div class="px-6 py-4 border-b border-gray-200">
+      <h2 class="text-2xl font-semibold text-gray-900">Students</h2>
+    </div>
+
+    <% if @students.any? %>
+      <div class="overflow-x-auto">
+        <table class="min-w-full divide-y divide-gray-200">
+          <thead class="bg-gray-50">
+            <tr>
+              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">First Name</th>
+              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Last Name</th>
+              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+            </tr>
+          </thead>
+          <tbody class="bg-white divide-y divide-gray-200">
+            <% @students.each do |student| %>
+              <tr class="hover:bg-gray-50 transition-colors">
+                <td class="px-6 py-4 whitespace-nowrap">
+                  <%= link_to student.first_name, student_path(student), 
+                      class: "text-primary hover:text-primary/80 font-medium" %>
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap">
+                  <%= link_to student.last_name, student_path(student), 
+                      class: "text-primary hover:text-primary/80 font-medium" %>
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium space-x-2">
+                  <%= link_to "View Skills", student_path(student), 
+                      class: "text-primary hover:text-primary/80 font-medium" %>
+                  <span class="text-gray-300">|</span>
+                  <%= button_to "Delete", destroy_student_classroom_path(@classroom, student_id: student.id), 
+                      method: :delete, 
+                      data: { confirm: "Are you sure you want to delete #{student.full_name}?" },
+                      class: "text-red-600 hover:text-red-800 font-medium" %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    <% else %>
+      <div class="px-6 py-8 text-center">
+        <p class="text-gray-600">No students in this classroom yet. Add one below!</p>
+      </div>
+    <% end %>
+  </div>
+
+  <!-- Bulk Mark Skills -->
+  <% if @students.any? %>
+    <div class="bg-white rounded-lg shadow-md p-6 border border-gray-200">
+      <h2 class="text-2xl font-semibold text-gray-900 mb-6">Bulk Mark Skills</h2>
+      
+      <details class="space-y-4">
+        <summary class="cursor-pointer text-lg font-medium text-primary hover:text-primary/80 mb-4">
+          Mark skills for multiple students at once
+        </summary>
+        
+        <%= form_with url: bulk_mark_skills_classroom_path(@classroom), method: :post, local: true, class: "space-y-4" do |form| %>
+          <!-- Skill Selection -->
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-2">Select Skill</label>
+            <select name="skill_id" id="skill_select" required
+                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">
+              <option value="">-- Choose a skill --</option>
+              <% @sections.each do |section| %>
+                <optgroup label="<%= section.name %>">
+                  <% section.skills.ordered.each do |skill| %>
+                    <option value="<%= skill.id %>">
+                      <%= skill.level_icon %> <%= skill.level_name %>: <%= skill.description %>
+                    </option>
+                  <% end %>
+                </optgroup>
+              <% end %>
+            </select>
+          </div>
+
+          <!-- Student Selection -->
+          <div>
+            <div class="flex justify-between items-center mb-2">
+              <label class="block text-sm font-medium text-gray-700">Select Students</label>
+              <div class="space-x-2">
+                <button type="button" onclick="selectAllStudents()" 
+                        class="text-sm text-primary hover:text-primary/80 font-medium">
+                  Select All
+                </button>
+                <span class="text-gray-300">|</span>
+                <button type="button" onclick="deselectAllStudents()" 
+                        class="text-sm text-primary hover:text-primary/80 font-medium">
+                  Deselect All
+                </button>
+              </div>
+            </div>
+            
+            <div class="border border-gray-300 rounded-lg p-4 max-h-64 overflow-y-auto bg-gray-50">
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                <% @students.each do |student| %>
+                  <label class="flex items-center space-x-2 cursor-pointer hover:bg-white p-2 rounded">
+                    <%= check_box_tag "student_ids[]", student.id, false, 
+                        id: "student_#{student.id}",
+                        class: "w-4 h-4 text-primary border-gray-300 rounded focus:ring-primary student-checkbox" %>
+                    <span class="text-gray-900"><%= student.full_name %></span>
+                  </label>
+                <% end %>
+              </div>
+            </div>
+          </div>
+
+          <!-- Submit Button -->
+          <div>
+            <%= form.submit "Mark Skill as Demonstrated", 
+                class: "bg-primary hover:bg-primary/90 text-white px-6 py-3 rounded-lg font-semibold transition-colors cursor-pointer" %>
+          </div>
+        <% end %>
+      </details>
+    </div>
+  <% end %>
+
+  <!-- Add Student Form -->
+  <div class="bg-white rounded-lg shadow-md p-6 border border-gray-200">
+    <h2 class="text-2xl font-semibold text-gray-900 mb-6">Add New Student</h2>
+
+    <%= form_with model: [@classroom, @student], url: create_student_classroom_path(@classroom), local: true, class: "space-y-4" do |form| %>
+      <% if @student.errors.any? %>
+        <div class="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg">
+          <h3 class="font-semibold mb-2">Please fix the following errors:</h3>
+          <ul class="list-disc list-inside">
+            <% @student.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div>
+          <%= form.label :first_name, "First Name", class: "block text-sm font-medium text-gray-700 mb-2" %>
+          <%= form.text_field :first_name, 
+              required: true,
+              class: "w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent" %>
+        </div>
+
+        <div>
+          <%= form.label :last_name, "Last Name", class: "block text-sm font-medium text-gray-700 mb-2" %>
+          <%= form.text_field :last_name, 
+              required: true,
+              class: "w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent" %>
+        </div>
+      </div>
+
+      <div>
+        <%= form.submit "Add Student", 
+            class: "bg-primary hover:bg-primary/90 text-white px-6 py-3 rounded-lg font-semibold transition-colors cursor-pointer" %>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<script>
+  function selectAllStudents() {
+    document.querySelectorAll('.student-checkbox').forEach(checkbox => {
+      checkbox.checked = true;
+    });
+  }
+
+  function deselectAllStudents() {
+    document.querySelectorAll('.student-checkbox').forEach(checkbox => {
+      checkbox.checked = false;
+    });
+  }
+</script>
