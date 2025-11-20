@@ -1,0 +1,111 @@
+<!-- app/views/students/_section.html.erb -->
+
+<%
+  bronze_skills = section.bronze_skills
+  silver_skills = section.silver_skills
+  gold_skills = section.gold_skills
+  
+  bronze_demonstrated = student.demonstrated_skills_for(section, :bronze).count
+  silver_demonstrated = student.demonstrated_skills_for(section, :silver).count
+  gold_demonstrated = student.demonstrated_skills_for(section, :gold).count
+  
+  has_bronze = student.has_badge?(section, :bronze)
+  has_silver = student.has_badge?(section, :silver)
+  has_gold = student.has_badge?(section, :gold)
+  
+  ready_for_bronze = student.ready_for_badge?(section, :bronze) && !has_bronze
+  ready_for_silver = student.ready_for_badge?(section, :silver) && !has_silver
+  ready_for_gold = student.ready_for_badge?(section, :gold) && !has_gold
+  
+  bg_color = case section.category
+  when "Design and Construct" then "bg-blue-50 hover:bg-blue-100"
+  when "Materials" then "bg-green-50 hover:bg-green-100"
+  when "Graphics" then "bg-orange-50 hover:bg-orange-100"
+  else "bg-gray-50 hover:bg-gray-100"
+  end
+%>
+
+<div class="border rounded-lg mb-3 overflow-hidden" data-controller="collapse">
+  
+  <!-- Section Header (Clickable) -->
+  <div class="<%= bg_color %> px-4 py-3 cursor-pointer transition"
+       data-action="click->collapse#toggle">
+    <div class="flex items-center justify-between">
+      <div class="flex items-center gap-3 flex-1">
+        <span class="text-lg"><%= section.icon %></span>
+        <div class="flex-1">
+          <div class="font-semibold text-gray-900"><%= section.name %></div>
+          <div class="flex gap-2 mt-1 flex-wrap">
+            <% if has_bronze %>
+              <span class="px-2 py-0.5 bg-orange-100 text-orange-800 text-xs rounded-full font-medium">
+                🥉 Bronze Earned
+              </span>
+            <% end %>
+            <% if has_silver %>
+              <span class="px-2 py-0.5 bg-gray-200 text-gray-800 text-xs rounded-full font-medium">
+                🥈 Silver Earned
+              </span>
+            <% end %>
+            <% if has_gold %>
+              <span class="px-2 py-0.5 bg-yellow-100 text-yellow-800 text-xs rounded-full font-medium">
+                🥇 Gold Earned
+              </span>
+            <% end %>
+            <span class="text-xs text-gray-600">
+              <%= bronze_demonstrated %>/<%= bronze_skills.count %> Bronze •
+              <%= silver_demonstrated %>/<%= silver_skills.count %> Silver •
+              <%= gold_demonstrated %>/<%= gold_skills.count %> Gold
+            </span>
+          </div>
+        </div>
+      </div>
+      <svg class="w-5 h-5 text-gray-400 transition-transform" data-collapse-target="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+      </svg>
+    </div>
+  </div>
+  
+  <!-- Section Content (Collapsible) -->
+  <div class="p-4 space-y-4" data-collapse-target="content">
+    
+    <!-- Bronze Level -->
+    <%= render partial: 'students/skill_level', locals: {
+      level: :bronze,
+      level_name: 'BRONZE',
+      icon: '🥉',
+      skills: bronze_skills,
+      student: student,
+      section: section,
+      demonstrated_count: bronze_demonstrated,
+      has_badge: has_bronze,
+      ready_for_badge: ready_for_bronze
+    } %>
+
+    <!-- Silver Level -->
+    <%= render partial: 'students/skill_level', locals: {
+      level: :silver,
+      level_name: 'SILVER',
+      icon: '🥈',
+      skills: silver_skills,
+      student: student,
+      section: section,
+      demonstrated_count: silver_demonstrated,
+      has_badge: has_silver,
+      ready_for_badge: ready_for_silver
+    } %>
+
+    <!-- Gold Level -->
+    <%= render partial: 'students/skill_level', locals: {
+      level: :gold,
+      level_name: 'GOLD',
+      icon: '🥇',
+      skills: gold_skills,
+      student: student,
+      section: section,
+      demonstrated_count: gold_demonstrated,
+      has_badge: has_gold,
+      ready_for_badge: ready_for_gold
+    } %>
+
+  </div>
+</div>

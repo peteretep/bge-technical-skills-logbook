@@ -1,0 +1,32 @@
+<!-- app/views/students/_category.html.erb -->
+
+<div class="category-card bg-white rounded-xl shadow-md mb-6 border-l-4 <%= category_config[:border] %>" 
+     data-controller="collapse"
+     data-collapse-expanded-value="true">
+  
+  <div class="p-6">
+    <div class="flex items-center justify-between mb-4">
+      <div class="flex items-center gap-3">
+        <div class="text-3xl"><%= category_config[:icon] %></div>
+        <div>
+          <h2 class="text-xl font-bold text-gray-900"><%= category %></h2>
+          <p class="text-sm text-gray-600"><%= category_config[:description] %></p>
+        </div>
+      </div>
+      <button 
+        data-action="click->collapse#toggleAll"
+        class="<%= category_config[:text_color] %> hover:opacity-75 font-medium text-sm">
+        Collapse All
+      </button>
+    </div>
+
+    <!-- Sections within this category -->
+    <% sections.each do |section| %>
+      <%= render partial: 'students/section', locals: { 
+        section: section, 
+        student: student 
+      } %>
+    <% end %>
+
+  </div>
+</div>

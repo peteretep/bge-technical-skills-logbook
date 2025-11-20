@@ -1,176 +1,58 @@
-<div class="space-y-6">
-  <!-- Breadcrumb Navigation -->
-  <nav class="flex" aria-label="Breadcrumb">
-    <ol class="inline-flex items-center space-x-1 md:space-x-3">
-      <li class="inline-flex items-center">
-        <%= link_to root_path, class: "text-gray-700 hover:text-primary" do %>
-          <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20"><path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"></path></svg>
-          Dashboard
-        <% end %>
-      </li>
-      <li>
-        <div class="flex items-center">
-          <svg class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
-          <%= link_to @student.classroom.full_name, classroom_path(@student.classroom), class: "text-gray-700 hover:text-primary" %>
-        </div>
-      </li>
-      <li>
-        <div class="flex items-center">
-          <svg class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
-          <span class="text-gray-500 font-medium"><%= @student.full_name %></span>
-        </div>
-      </li>
-    </ol>
-  </nav>
+<!-- app/views/students/show.html.erb -->
 
-  <!-- Header -->
-  <div class="bg-white rounded-lg shadow-md p-6 border border-gray-200">
-    <h1 class="text-4xl font-bold text-gray-900 mb-2"><%= @student.full_name %></h1>
-    <p class="text-gray-600">Skills Progress Tracker</p>
-  </div>
-
-  <!-- Awarded Badges -->
-  <% if @badges.any? %>
-    <div class="bg-white rounded-lg shadow-md p-6 border border-gray-200">
-      <h2 class="text-2xl font-semibold text-gray-900 mb-4">Awarded Badges</h2>
-      <div class="flex flex-wrap gap-3">
-        <% @badges.each do |badge| %>
-          <% badge_color = case badge.level
-               when 'bronze' then 'bg-[#CD7F32]'
-               when 'silver' then 'bg-[#C0C0C0]'
-               when 'gold' then 'bg-[#FFD700]'
-               else 'bg-gray-500'
-             end %>
-          <div class="<%= badge_color %> text-white px-4 py-2 rounded-full flex items-center space-x-2 shadow-md">
-            <span class="text-xl"><%= badge.level_icon %></span>
-            <span class="font-semibold"><%= badge.level_name %> Badge</span>
-            <span class="text-sm opacity-90">• <%= badge.section.name %></span>
-            <span class="text-xs opacity-75"><%= badge.awarded_at.strftime("%b %d, %Y") %></span>
-          </div>
-        <% end %>
+<div class="bg-white border-b shadow-sm">
+  <div class="max-w-7xl mx-auto px-4 py-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between">
+      <div>
+        <h1 class="text-2xl font-bold text-gray-900"><%= @student.full_name %></h1>
+        <p class="text-sm text-gray-600">
+          <%= link_to @student.classroom.full_name, classroom_path(@student.classroom), class: "hover:text-blue-600" %>
+        </p>
+      </div>
+      <div class="flex gap-3">
+        <div class="text-center px-4 py-2 bg-orange-50 rounded-lg border border-orange-200">
+          <div class="text-2xl font-bold text-orange-600"><%= @bronze_count %></div>
+          <div class="text-xs text-orange-700">🥉 Bronze</div>
+        </div>
+        <div class="text-center px-4 py-2 <%= @silver_count > 0 ? 'bg-gray-100 border-gray-400' : 'bg-gray-50 border-gray-300' %> rounded-lg border">
+          <div class="text-2xl font-bold <%= @silver_count > 0 ? 'text-gray-700' : 'text-gray-500' %>"><%= @silver_count %></div>
+          <div class="text-xs text-gray-600">🥈 Silver</div>
+        </div>
+        <div class="text-center px-4 py-2 <%= @gold_count > 0 ? 'bg-yellow-50 border-yellow-400' : 'bg-gray-50 border-gray-300' %> rounded-lg border">
+          <div class="text-2xl font-bold <%= @gold_count > 0 ? 'text-yellow-600' : 'text-gray-500' %>"><%= @gold_count %></div>
+          <div class="text-xs text-gray-600">🥇 Gold</div>
+        </div>
       </div>
     </div>
-  <% end %>
+  </div>
+</div>
 
-  <!-- Skills by Section -->
-  <div class="space-y-6">
-    <% @sections.each do |section| %>
-      <div class="bg-white rounded-lg shadow-md border border-gray-200 overflow-hidden">
-        <div class="px-6 py-4 bg-gray-50 border-b border-gray-200">
-          <h3 class="text-2xl font-semibold text-gray-900"><%= section.name %></h3>
-          <p class="text-sm text-gray-600"><%= section.category %></p>
-        </div>
-
-        <div class="p-6 space-y-4">
-          <% [:bronze, :silver, :gold].each do |level| %>
-            <% skills = section.skills.where(level: level).ordered %>
-            <% next if skills.empty? %>
-            
-            <% demonstrated_count = @student.student_skills.joins(:skill).where(skills: { section: section, level: level }, demonstrated: true).count %>
-            <% percentage = skills.count > 0 ? (demonstrated_count.to_f / skills.count * 100).round : 0 %>
-            
-            <% level_colors = case level
-                 when :bronze
-                   { bg: 'bg-[#CD7F32]', text: 'text-[#CD7F32]', border: 'border-[#CD7F32]', light: 'bg-[#CD7F32]/10' }
-                 when :silver
-                   { bg: 'bg-[#C0C0C0]', text: 'text-[#C0C0C0]', border: 'border-[#C0C0C0]', light: 'bg-[#C0C0C0]/10' }
-                 when :gold
-                   { bg: 'bg-[#FFD700]', text: 'text-[#FFD700]', border: 'border-[#FFD700]', light: 'bg-[#FFD700]/10' }
-               end %>
-
-            <details class="<%= level_colors[:light] %> rounded-lg border-2 <%= level_colors[:border] %>">
-              <summary class="px-4 py-3 cursor-pointer font-semibold text-gray-900 flex items-center justify-between">
-                <span class="flex items-center space-x-2">
-                  <span class="text-2xl"><%= Skill.new(level: level.to_s).level_icon %></span>
-                  <span class="text-lg"><%= level.to_s.capitalize %> Level</span>
-                </span>
-                <span class="text-sm font-normal text-gray-600">
-                  <%= demonstrated_count %>/<%= skills.count %> demonstrated
-                </span>
-              </summary>
-
-              <div class="px-4 pb-4 pt-2 space-y-4">
-                <!-- Progress Bar -->
-                <div>
-                  <div class="flex justify-between text-sm text-gray-600 mb-1">
-                    <span>Progress</span>
-                    <span class="font-semibold"><%= percentage %>%</span>
-                  </div>
-                  <div class="w-full bg-gray-200 rounded-full h-3 overflow-hidden">
-                    <div class="<%= level_colors[:bg] %> h-full rounded-full transition-all duration-300" style="width: <%= percentage %>%"></div>
-                  </div>
-                </div>
-
-                <!-- Skills List -->
-                <div class="space-y-2">
-                  <% skills.each do |skill| %>
-                    <% student_skill = @student_skills_map[skill.id] || @student.student_skills.build(skill: skill, demonstrated: false) %>
-                    <div id="skill_<%= skill.id %>" class="<%= student_skill.demonstrated ? 'bg-green-50 border-green-200' : 'bg-white border-gray-200' %> border rounded-lg p-3 transition-colors">
-                      <%= form_with url: toggle_skill_student_path(@student), 
-                          method: :patch, 
-                          local: false,
-                          data: { turbo: true },
-                          class: "flex items-start space-x-3" do |f| %>
-                        <%= hidden_field_tag :skill_id, skill.id %>
-                        <div class="flex-shrink-0 pt-1">
-                          <%= check_box_tag "demonstrated", "1", student_skill.demonstrated, 
-                              { 
-                                onchange: "this.form.requestSubmit()",
-                                id: "skill_checkbox_#{skill.id}",
-                                class: "w-5 h-5 text-primary border-gray-300 rounded focus:ring-2 focus:ring-primary cursor-pointer"
-                              } %>
-                        </div>
-                        <div class="flex-1">
-                          <%= label_tag "skill_checkbox_#{skill.id}", skill.description, 
-                              class: "text-gray-900 font-medium cursor-pointer block" %>
-                          <% if student_skill.demonstrated && student_skill.demonstrated_at %>
-                            <p class="text-sm text-green-600 mt-1">
-                              ✓ Demonstrated on <%= student_skill.demonstrated_at.strftime("%B %d, %Y") %>
-                            </p>
-                          <% end %>
-                        </div>
-                      <% end %>
-                    </div>
-                  <% end %>
-                </div>
-
-                <!-- Badge Award Section -->
-                <% if @student.ready_for_badge?(section, level) && !@student.has_badge?(section, level) %>
-                  <div class="<%= level_colors[:light] %> border-2 <%= level_colors[:border] %> rounded-lg p-4">
-                    <div class="flex items-center justify-between">
-                      <div>
-                        <p class="font-semibold text-gray-900 mb-1">Ready for <%= level.to_s.capitalize %> Badge!</p>
-                        <p class="text-sm text-gray-600">Student has demonstrated <%= percentage %>% of skills</p>
-                      </div>
-                      <%= form_with model: [@student, Badge.new], url: student_badges_path(@student), local: true do |f| %>
-                        <%= f.hidden_field :section_id, value: section.id %>
-                        <%= f.hidden_field :level, value: level %>
-                        <%= f.submit "Award #{level.to_s.capitalize} Badge", 
-                            class: "#{level_colors[:bg]} hover:opacity-90 text-white px-6 py-2 rounded-lg font-semibold transition-opacity cursor-pointer shadow-md" %>
-                      <% end %>
-                    </div>
-                  </div>
-                <% elsif @student.has_badge?(section, level) %>
-                  <% badge = @student.badges.find_by(section: section, level: level) %>
-                  <div class="bg-green-50 border-2 border-green-400 rounded-lg p-4">
-                    <div class="flex items-center space-x-3">
-                      <span class="text-3xl"><%= badge.level_icon %></span>
-                      <div>
-                        <p class="font-semibold text-green-900">
-                          ✓ <%= badge.level_name %> Badge Awarded
-                        </p>
-                        <p class="text-sm text-green-700">
-                          Awarded on <%= badge.awarded_at.strftime("%B %d, %Y") %>
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                <% end %>
-              </div>
-            </details>
-          <% end %>
+<div class="max-w-7xl mx-auto px-4 py-6 sm:px-6 lg:px-8">
+  
+  <!-- Quick Stats -->
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+    <% @categories.each do |category, data| %>
+      <div class="bg-gradient-to-br <%= data[:gradient] %> rounded-xl p-4 text-white shadow-md">
+        <div class="flex items-center justify-between">
+          <div>
+            <div class="text-sm opacity-90"><%= category %></div>
+            <div class="text-2xl font-bold mt-1"><%= data[:started] %>/<%= data[:total] %> sections started</div>
+            <div class="text-xs opacity-75 mt-1"><%= data[:skills] %> skills demonstrated</div>
+          </div>
+          <div class="text-4xl"><%= data[:icon] %></div>
         </div>
       </div>
     <% end %>
   </div>
+
+  <!-- Categories -->
+  <% @sections_by_category.each do |category, sections| %>
+    <%= render partial: 'students/category', locals: { 
+      category: category, 
+      sections: sections, 
+      student: @student,
+      category_config: @categories[category]
+    } %>
+  <% end %>
+
 </div>
