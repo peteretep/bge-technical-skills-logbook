@@ -1,0 +1,68 @@
+<!-- app/views/classrooms/_bulk_section.html.erb -->
+
+<%
+  bronze_skills = section.bronze_skills
+  silver_skills = section.silver_skills
+  gold_skills = section.gold_skills
+  
+  bg_color = case section.category
+  when "Design and Construct" then "bg-blue-50 hover:bg-blue-100"
+  when "Materials" then "bg-green-50 hover:bg-green-100"
+  when "Graphics" then "bg-orange-50 hover:bg-orange-100"
+  else "bg-gray-50 hover:bg-gray-100"
+  end
+%>
+
+<div class="border rounded-lg mb-3 overflow-hidden" data-controller="collapse">
+  
+  <!-- Section Header (Clickable) -->
+  <div class="<%= bg_color %> px-4 py-3 cursor-pointer transition"
+       data-action="click->collapse#toggle">
+    <div class="flex items-center justify-between">
+      <div class="flex items-center gap-3 flex-1">
+        <span class="text-lg"><%= section.icon %></span>
+        <div class="flex-1">
+          <div class="font-semibold text-gray-900"><%= section.name %></div>
+          <div class="text-xs text-gray-600 mt-1">
+            <%= section.skills.count %> skills available
+          </div>
+        </div>
+      </div>
+      <svg class="w-5 h-5 text-gray-400 transition-transform" data-collapse-target="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+      </svg>
+    </div>
+  </div>
+  
+  <!-- Section Content (Collapsible) -->
+  <div class="p-4 space-y-4" data-collapse-target="content">
+    
+    <!-- Bronze Level -->
+    <%= render partial: 'classrooms/bulk_skill_level', locals: {
+      level: :bronze,
+      level_name: 'BRONZE',
+      icon: '🥉',
+      skills: bronze_skills,
+      section: section
+    } %>
+
+    <!-- Silver Level -->
+    <%= render partial: 'classrooms/bulk_skill_level', locals: {
+      level: :silver,
+      level_name: 'SILVER',
+      icon: '🥈',
+      skills: silver_skills,
+      section: section
+    } %>
+
+    <!-- Gold Level -->
+    <%= render partial: 'classrooms/bulk_skill_level', locals: {
+      level: :gold,
+      level_name: 'GOLD',
+      icon: '🥇',
+      skills: gold_skills,
+      section: section
+    } %>
+
+  </div>
+</div>

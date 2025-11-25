@@ -1,0 +1,45 @@
+<!-- app/views/classrooms/_bulk_skill_level.html.erb -->
+
+<%
+  border_color = case level
+  when :bronze then 'border-bronze'
+  when :silver then 'border-silver'
+  when :gold then 'border-gold'
+  end
+  
+  text_color = case level
+  when :bronze then 'text-orange-700'
+  when :silver then 'text-gray-600'
+  when :gold then 'text-yellow-600'
+  end
+%>
+
+<div class="border-l-4 <%= border_color %> pl-4">
+  <div class="flex items-center justify-between mb-3">
+    <div class="flex items-center gap-2 flex-wrap">
+      <span class="text-xl"><%= icon %></span>
+      <span class="font-bold <%= text_color %>"><%= level_name %> LEVEL</span>
+    </div>
+    <div class="text-sm text-gray-600">
+      <%= skills.count %> skills
+    </div>
+  </div>
+  
+  <div class="space-y-2">
+    <% skills.each do |skill| %>
+      <button 
+        data-action="click->bulk-mark#markSkill"
+        data-skill-id="<%= skill.id %>"
+        data-skill-name="<%= skill.description %>"
+        class="w-full text-left flex items-center gap-3 py-2 px-3 bg-gray-50 hover:bg-gray-100 rounded transition group">
+        <div class="w-4 h-4 border-2 border-gray-300 rounded-full group-hover:border-primary"></div>
+        <span class="text-sm flex-1 text-gray-700 group-hover:text-gray-900">
+          <%= skill.description %>
+        </span>
+        <span class="text-xs text-primary opacity-0 group-hover:opacity-100 transition-opacity font-medium">
+          Apply to Selected →
+        </span>
+      </button>
+    <% end %>
+  </div>
+</div>

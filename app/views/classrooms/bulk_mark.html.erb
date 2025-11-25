@@ -1,0 +1,102 @@
+<!-- app/views/classrooms/bulk_mark.html.erb -->
+
+<div class="bg-white border-b shadow-sm">
+  <div class="max-w-7xl mx-auto px-4 py-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between">
+      <div>
+        <h1 class="text-2xl font-bold text-gray-900">Bulk Mark Skills</h1>
+        <p class="text-sm text-gray-600">
+          <%= link_to @classroom.full_name, classroom_path(@classroom), class: "hover:text-blue-600" %>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="max-w-7xl mx-auto px-4 py-6 sm:px-6 lg:px-8" data-controller="bulk-mark">
+  
+  <!-- Student Selection (Sticky Top) -->
+  <div class="bg-white rounded-xl shadow-md p-6 border border-gray-200 mb-8 sticky top-4 z-30">
+    <div class="flex justify-between items-center mb-4">
+      <div>
+        <h2 class="text-lg font-semibold text-gray-900">1. Select Students</h2>
+        <p class="text-sm text-gray-600">Select the students you want to mark skills for.</p>
+      </div>
+      <div class="flex items-center space-x-4">
+        <span data-bulk-mark-target="count" class="text-sm font-medium text-primary bg-primary/10 px-3 py-1 rounded-full">0 selected</span>
+        <button data-action="click->bulk-mark#toggleAll" class="text-sm text-gray-600 hover:text-primary font-medium">
+          Toggle All
+        </button>
+      </div>
+    </div>
+    
+    <div class="border border-gray-200 rounded-lg p-4 max-h-48 overflow-y-auto bg-gray-50">
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
+        <% @students.each do |student| %>
+          <label class="flex items-center space-x-3 cursor-pointer hover:bg-white p-2 rounded transition-colors border border-transparent hover:border-gray-200">
+            <%= check_box_tag "student_ids[]", student.id, false, 
+                data: { bulk_mark_target: "checkbox", action: "change->bulk-mark#updateState" },
+                class: "w-4 h-4 text-primary border-gray-300 rounded focus:ring-primary" %>
+            <span class="text-gray-900 select-none text-sm font-medium"><%= student.full_name %></span>
+          </label>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <div class="mb-6">
+    <h2 class="text-lg font-semibold text-gray-900 mb-2">2. Select Skill to Apply</h2>
+    <p class="text-sm text-gray-600">Click a skill below to apply it to the selected students.</p>
+  </div>
+
+  <!-- Quick Stats -->
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+    <% @categories.each do |category, data| %>
+      <div class="bg-gradient-to-br <%= data[:gradient] %> rounded-xl p-4 text-white shadow-md">
+        <div class="flex items-center justify-between">
+          <div>
+            <div class="text-sm opacity-90"><%= category %></div>
+            <div class="text-2xl font-bold mt-1"><%= data[:total] %> sections</div>
+            <div class="text-xs opacity-75 mt-1"><%= data[:description] %></div>
+          </div>
+          <div class="text-4xl"><%= data[:icon] %></div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+  <!-- Categories -->
+  <% @sections_by_category.each do |category, sections| %>
+    <% category_config = @categories[category] %>
+    
+    <div class="category-card bg-white rounded-xl shadow-md mb-6 border-l-4 <%= category_config[:border] %>" 
+         data-controller="collapse"
+         data-collapse-expanded-value="true">
+      
+      <div class="p-6">
+        <div class="flex items-center justify-between mb-4">
+          <div class="flex items-center gap-3">
+            <div class="text-3xl"><%= category_config[:icon] %></div>
+            <div>
+              <h2 class="text-xl font-bold text-gray-900"><%= category %></h2>
+              <p class="text-sm text-gray-600"><%= category_config[:description] %></p>
+            </div>
+          </div>
+          <button 
+            data-action="click->collapse#toggleAll"
+            class="<%= category_config[:text_color] %> hover:opacity-75 font-medium text-sm">
+            Collapse All
+          </button>
+        </div>
+
+        <!-- Sections within this category -->
+        <% sections.each do |section| %>
+          <%= render partial: 'classrooms/bulk_section', locals: { 
+            section: section
+          } %>
+        <% end %>
+
+      </div>
+    </div>
+  <% end %>
+</div>
