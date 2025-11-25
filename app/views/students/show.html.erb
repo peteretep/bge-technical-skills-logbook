@@ -9,7 +9,7 @@
           <%= link_to @student.classroom.full_name, classroom_path(@student.classroom), class: "hover:text-blue-600" %>
         </p>
       </div>
-      <div class="flex gap-3">
+      <div class="flex gap-3" id="badge_counts">
         <div class="text-center px-4 py-2 bg-orange-50 rounded-lg border border-orange-200">
           <div class="text-2xl font-bold text-orange-600"><%= @bronze_count %></div>
           <div class="text-xs text-orange-700">🥉 Bronze</div>
