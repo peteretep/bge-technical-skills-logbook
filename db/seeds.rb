@@ -12,36 +12,23 @@ puts "\n📚 Seeding Experiences and Outcomes with official descriptions..."
 # Define all E&O codes with their official descriptions
 experiences_outcomes_data = [
   # Second Level (TCH 2-)
-  {code: "TCH 2-09a", description: "I can create solutions in 3D and 2D and can justify the construction/graphic methods and the design features."},
-  {code: "TCH 2-09b", description: "[PLACEHOLDER - Please update with official Scottish CfE text for TCH 2-09b]"},
-  {code: "TCH 2-10a", description: "I can explore the properties and performance of materials before justifying the most appropriate material for a task."},
+  {code: "TCH 2-09a", description: "I can extend and enhance my design skills to solve problems and can construct models."},
+  {code: "TCH 2-10a", description: "I can recognise basic properties and uses for a variety of materials and can discuss which ones are most suitable for a given task."},
   {code: "TCH 2-11a", description: "I can use a range of graphic techniques, manually and digitally, to communicate ideas, concepts or products, experimenting with the use of shape, colour and texture to enhance my work."},
-  {code: "TCH 2-12a", description: "[PLACEHOLDER - Please update with official Scottish CfE text for TCH 2-12a]"},
-  {code: "TCH 2-13a", description: "[PLACEHOLDER - Please update with official Scottish CfE text for TCH 2-13a]"},
+  {code: "TCH 2-12a", description: "I can extend my knowledge and understanding of engineering disciplines to create solution."},
   {code: "TCH 2-06a", description: "I can make suggestions as to how individuals and organisations may use technologies to support sustainability."},
 
   # Third Level (TCH 3-)
-  {code: "TCH 3-09a", description: "I can apply design thinking skills when designing and manufacturing models/products which satisfy the user or client."},
-  {code: "TCH 3-09b", description: "[PLACEHOLDER - Please update with official Scottish CfE text for TCH 3-09b]"},
-  {code: "TCH 3-10a", description: "I consider the material performance as well as sustainability of materials and apply these to real world tasks."},
-  {code: "TCH 3-11a", description: "[PLACEHOLDER - Please update with official Scottish CfE text for TCH 3-11a]"},
-  {code: "TCH 3-12a", description: "[PLACEHOLDER - Please update with official Scottish CfE text for TCH 3-12a]"},
-  {code: "TCH 3-13a", description: "[PLACEHOLDER - Please update with official Scottish CfE text for TCH 3-13a]"},
-  {code: "TCH 3-06a", description: "[PLACEHOLDER - Please update with official Scottish CfE text for TCH 3-06a]"},
+  {code: "TCH 3-09a", description: "I can create solutions in 3D and 2D and can justify the construction/graphic methods and the design features"},
+  {code: "TCH 3-10a", description: "I can explore the properties and performance of materials before justifying the most appropriate material for a task."},
+  {code: "TCH 3-11a", description: "I can apply a range of graphic techniques and standards when producing images using sketching, drawing and software."},
+  {code: "TCH 3-12a", description: "I can apply my knowledge and understanding of engineering disciplines and can develop/build solutions to given tasks."},
 
   # Fourth Level (TCH 4-)
-  {code: "TCH 4-09a", description: "[PLACEHOLDER - Please update with official Scottish CfE text for TCH 4-09a]"},
-  {code: "TCH 4-09b", description: "[PLACEHOLDER - Please update with official Scottish CfE text for TCH 4-09b]"},
-  {code: "TCH 4-10a", description: "[PLACEHOLDER - Please update with official Scottish CfE text for TCH 4-10a]"},
-  {code: "TCH 4-11a", description: "[PLACEHOLDER - Please update with official Scottish CfE text for TCH 4-11a]"},
-  {code: "TCH 4-12a", description: "[PLACEHOLDER - Please update with official Scottish CfE text for TCH 4-12a]"},
-  {code: "TCH 4-13a", description: "[PLACEHOLDER - Please update with official Scottish CfE text for TCH 4-13a]"},
-  {code: "TCH 4-06a", description: "[PLACEHOLDER - Please update with official Scottish CfE text for TCH 4-06a]"},
-
-  # Expressive Arts (EXA)
-  {code: "EXA 2-02a", description: "[PLACEHOLDER - Please update with official Scottish CfE text for EXA 2-02a]"},
-  {code: "EXA 3-02a", description: "[PLACEHOLDER - Please update with official Scottish CfE text for EXA 3-02a]"},
-  {code: "EXA 4-02a", description: "[PLACEHOLDER - Please update with official Scottish CfE text for EXA 4-02a]"}
+  {code: "TCH 4-09a", description: "I can apply design thinking skills when designing and manufacturing models/products which satisfy the user or client."},
+  {code: "TCH 4-10a", description: "I consider the material performance as well as sustainability of materials and apply these to real world tasks"},
+  {code: "TCH 4-11a", description: "I can extend my use of manual and digital graphic techniques to realise ideas, concepts and products and recognise the importance of real world standards"},
+  {code: "TCH 4-12a", description: "I can solve problems through the application of engineering principles and can discuss the impact engineering has on the world around me"},
 ]
 
 # Create or update each E&O record
