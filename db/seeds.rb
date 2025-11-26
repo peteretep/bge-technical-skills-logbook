@@ -12,23 +12,23 @@ puts "\n📚 Seeding Experiences and Outcomes with official descriptions..."
 # Define all E&O codes with their official descriptions
 experiences_outcomes_data = [
   # Second Level (TCH 2-)
-  {code: "TCH 2-09a", description: "I can extend and enhance my design skills to solve problems and can construct models."},
-  {code: "TCH 2-10a", description: "I can recognise basic properties and uses for a variety of materials and can discuss which ones are most suitable for a given task."},
-  {code: "TCH 2-11a", description: "I can use a range of graphic techniques, manually and digitally, to communicate ideas, concepts or products, experimenting with the use of shape, colour and texture to enhance my work."},
-  {code: "TCH 2-12a", description: "I can extend my knowledge and understanding of engineering disciplines to create solution."},
-  {code: "TCH 2-06a", description: "I can make suggestions as to how individuals and organisations may use technologies to support sustainability."},
+  { code: "TCH 2-09a", description: "I can extend and enhance my design skills to solve problems and can construct models." },
+  { code: "TCH 2-10a", description: "I can recognise basic properties and uses for a variety of materials and can discuss which ones are most suitable for a given task." },
+  { code: "TCH 2-11a", description: "I can use a range of graphic techniques, manually and digitally, to communicate ideas, concepts or products, experimenting with the use of shape, colour and texture to enhance my work." },
+  { code: "TCH 2-12a", description: "I can extend my knowledge and understanding of engineering disciplines to create solution." },
+  { code: "TCH 2-06a", description: "I can make suggestions as to how individuals and organisations may use technologies to support sustainability." },
 
   # Third Level (TCH 3-)
-  {code: "TCH 3-09a", description: "I can create solutions in 3D and 2D and can justify the construction/graphic methods and the design features"},
-  {code: "TCH 3-10a", description: "I can explore the properties and performance of materials before justifying the most appropriate material for a task."},
-  {code: "TCH 3-11a", description: "I can apply a range of graphic techniques and standards when producing images using sketching, drawing and software."},
-  {code: "TCH 3-12a", description: "I can apply my knowledge and understanding of engineering disciplines and can develop/build solutions to given tasks."},
+  { code: "TCH 3-09a", description: "I can create solutions in 3D and 2D and can justify the construction/graphic methods and the design features" },
+  { code: "TCH 3-10a", description: "I can explore the properties and performance of materials before justifying the most appropriate material for a task." },
+  { code: "TCH 3-11a", description: "I can apply a range of graphic techniques and standards when producing images using sketching, drawing and software." },
+  { code: "TCH 3-12a", description: "I can apply my knowledge and understanding of engineering disciplines and can develop/build solutions to given tasks." },
 
   # Fourth Level (TCH 4-)
-  {code: "TCH 4-09a", description: "I can apply design thinking skills when designing and manufacturing models/products which satisfy the user or client."},
-  {code: "TCH 4-10a", description: "I consider the material performance as well as sustainability of materials and apply these to real world tasks"},
-  {code: "TCH 4-11a", description: "I can extend my use of manual and digital graphic techniques to realise ideas, concepts and products and recognise the importance of real world standards"},
-  {code: "TCH 4-12a", description: "I can solve problems through the application of engineering principles and can discuss the impact engineering has on the world around me"},
+  { code: "TCH 4-09a", description: "I can apply design thinking skills when designing and manufacturing models/products which satisfy the user or client." },
+  { code: "TCH 4-10a", description: "I consider the material performance as well as sustainability of materials and apply these to real world tasks" },
+  { code: "TCH 4-11a", description: "I can extend my use of manual and digital graphic techniques to realise ideas, concepts and products and recognise the importance of real world standards" },
+  { code: "TCH 4-12a", description: "I can solve problems through the application of engineering principles and can discuss the impact engineering has on the world around me" }
 ]
 
 # Create or update each E&O record
@@ -52,14 +52,14 @@ puts "✅ Cleared existing student/classroom data (keeping sections and skills)"
 
 # Helper method to create skills idempotently with Es & Os
 def create_skill_if_needed(section, level, description, position, esos = nil)
-  Skill.find_or_create_by!(
+  skill = Skill.find_or_initialize_by(
     section: section,
     description: description
-  ) do |skill|
-    skill.level = level
-    skill.position = position
-    skill.experiences_and_outcomes = esos
-  end
+  )
+  skill.level = level
+  skill.position = position
+  skill.experiences_and_outcomes = esos
+  skill.save!
 end
 
 # ============================================================================
@@ -67,13 +67,14 @@ end
 # ============================================================================
 
 # SECTION 1: HAND TOOLS - MEASURING AND MARKING
-section1 = Section.find_or_create_by!(name: "Hand Tools: Measuring and Marking") do |s|
-  s.category = "Design and Construct"
-  s.description = "Accurate measuring and marking is the foundation of quality work."
-  s.icon = "📏"
-  s.position = 1
-  s.experiences_and_outcomes = "TCH 2-09a, TCH 2-12a, TCH 3-09a, TCH 3-12a, TCH 4-09a, TCH 4-12a"
-end
+# SECTION 1: HAND TOOLS - MEASURING AND MARKING
+section1 = Section.find_or_initialize_by(name: "Hand Tools: Measuring and Marking")
+section1.category = "Design and Construct"
+section1.description = "Accurate measuring and marking is the foundation of quality work."
+section1.icon = "📏"
+section1.position = 1
+section1.experiences_and_outcomes = "TCH 2-09a, TCH 2-12a, TCH 3-09a, TCH 3-12a, TCH 4-09a, TCH 4-12a"
+section1.save!
 
 # Bronze Skills (Level 2)
 create_skill_if_needed(section1, :bronze, "Use a steel rule to measure lengths accurately to the nearest millimetre", 1, "TCH 2-12a")
@@ -96,13 +97,14 @@ create_skill_if_needed(section1, :gold, "Mark out components ensuring minimal ma
 puts "✅ Created Section: #{section1.name} with #{section1.skills.count} skills"
 
 # SECTION 2: HAND TOOLS - CUTTING
-section2 = Section.find_or_create_by!(name: "Hand Tools: Cutting") do |s|
-  s.category = "Design and Construct"
-  s.description = "Safe and accurate cutting is essential for creating quality projects."
-  s.icon = "🪚"
-  s.position = 2
-  s.experiences_and_outcomes = "TCH 2-09a, TCH 2-12a, TCH 3-09a, TCH 3-12a, TCH 4-09a, TCH 4-12a"
-end
+# SECTION 2: HAND TOOLS - CUTTING
+section2 = Section.find_or_initialize_by(name: "Hand Tools: Cutting")
+section2.category = "Design and Construct"
+section2.description = "Safe and accurate cutting is essential for creating quality projects."
+section2.icon = "🪚"
+section2.position = 2
+section2.experiences_and_outcomes = "TCH 2-09a, TCH 2-12a, TCH 3-09a, TCH 3-12a, TCH 4-09a, TCH 4-12a"
+section2.save!
 
 # Bronze Skills (Level 2)
 create_skill_if_needed(section2, :bronze, "Use a tenon saw safely to cut straight lines in softwood", 1, "TCH 2-12a")
@@ -125,13 +127,14 @@ create_skill_if_needed(section2, :gold, "Demonstrate clean, accurate cuts requir
 puts "✅ Created Section: #{section2.name} with #{section2.skills.count} skills"
 
 # SECTION 3: HAND TOOLS - SHAPING AND SMOOTHING
-section3 = Section.find_or_create_by!(name: "Hand Tools: Shaping and Smoothing") do |s|
-  s.category = "Design and Construct"
-  s.description = "Shaping and smoothing skills transform rough materials into finished products."
-  s.icon = "🔨"
-  s.position = 3
-  s.experiences_and_outcomes = "TCH 2-09a, TCH 2-12a, TCH 3-09a, TCH 3-12a, TCH 4-09a, TCH 4-12a"
-end
+# SECTION 3: HAND TOOLS - SHAPING AND SMOOTHING
+section3 = Section.find_or_initialize_by(name: "Hand Tools: Shaping and Smoothing")
+section3.category = "Design and Construct"
+section3.description = "Shaping and smoothing skills transform rough materials into finished products."
+section3.icon = "🔨"
+section3.position = 3
+section3.experiences_and_outcomes = "TCH 2-09a, TCH 2-12a, TCH 3-09a, TCH 3-12a, TCH 4-09a, TCH 4-12a"
+section3.save!
 
 # Bronze Skills (Level 2)
 create_skill_if_needed(section3, :bronze, "Use a flat file to smooth edges of plastic or metal safely", 1, "TCH 2-12a")
@@ -157,13 +160,14 @@ create_skill_if_needed(section3, :gold, "Select and justify the most appropriate
 puts "✅ Created Section: #{section3.name} with #{section3.skills.count} skills"
 
 # SECTION 4: HAND TOOLS - JOINING
-section4 = Section.find_or_create_by!(name: "Hand Tools: Joining") do |s|
-  s.category = "Design and Construct"
-  s.description = "Strong, accurate joints are crucial for durable projects."
-  s.icon = "🔩"
-  s.position = 4
-  s.experiences_and_outcomes = "TCH 2-09a, TCH 2-12a, TCH 3-09a, TCH 3-12a, TCH 4-09a, TCH 4-12a"
-end
+# SECTION 4: HAND TOOLS - JOINING
+section4 = Section.find_or_initialize_by(name: "Hand Tools: Joining")
+section4.category = "Design and Construct"
+section4.description = "Strong, accurate joints are crucial for durable projects."
+section4.icon = "🔩"
+section4.position = 4
+section4.experiences_and_outcomes = "TCH 2-09a, TCH 2-12a, TCH 3-09a, TCH 3-12a, TCH 4-09a, TCH 4-12a"
+section4.save!
 
 # Bronze Skills (Level 2)
 create_skill_if_needed(section4, :bronze, "Use a screwdriver correctly (matching driver to screw type)", 1, "TCH 2-12a")
@@ -187,13 +191,14 @@ create_skill_if_needed(section4, :gold, "Create strong, accurate joints that mee
 puts "✅ Created Section: #{section4.name} with #{section4.skills.count} skills"
 
 # SECTION 5: HAND TOOLS - SAFETY AND MAINTENANCE
-section5 = Section.find_or_create_by!(name: "Hand Tools: Safety and Maintenance") do |s|
-  s.category = "Design and Construct"
-  s.description = "Safe working practices and tool maintenance are essential in any workshop."
-  s.icon = "🦺"
-  s.position = 5
-  s.experiences_and_outcomes = "TCH 2-12a, TCH 3-12a, TCH 4-12a"
-end
+# SECTION 5: HAND TOOLS - SAFETY AND MAINTENANCE
+section5 = Section.find_or_initialize_by(name: "Hand Tools: Safety and Maintenance")
+section5.category = "Design and Construct"
+section5.description = "Safe working practices and tool maintenance are essential in any workshop."
+section5.icon = "🦺"
+section5.position = 5
+section5.experiences_and_outcomes = "TCH 2-12a, TCH 3-12a, TCH 4-12a"
+section5.save!
 
 # Bronze Skills (Level 2)
 create_skill_if_needed(section5, :bronze, "Identify and wear appropriate PPE (apron, goggles when required)", 1, "TCH 2-12a")
@@ -216,13 +221,14 @@ create_skill_if_needed(section5, :gold, "Conduct risk assessments for different 
 puts "✅ Created Section: #{section5.name} with #{section5.skills.count} skills"
 
 # SECTION 6: WORKSHOP PROCESSES - PILLAR DRILL
-section6 = Section.find_or_create_by!(name: "Workshop Processes: Pillar Drill") do |s|
-  s.category = "Design and Construct"
-  s.description = "The pillar drill is essential for accurate hole drilling."
-  s.icon = "🔧"
-  s.position = 6
-  s.experiences_and_outcomes = "TCH 2-09a, TCH 2-12a, TCH 3-09a, TCH 3-12a, TCH 4-09a, TCH 4-12a"
-end
+# SECTION 6: WORKSHOP PROCESSES - PILLAR DRILL
+section6 = Section.find_or_initialize_by(name: "Workshop Processes: Pillar Drill")
+section6.category = "Design and Construct"
+section6.description = "The pillar drill is essential for accurate hole drilling."
+section6.icon = "🔧"
+section6.position = 6
+section6.experiences_and_outcomes = "TCH 2-09a, TCH 2-12a, TCH 3-09a, TCH 3-12a, TCH 4-09a, TCH 4-12a"
+section6.save!
 
 # Bronze Skills (Level 2)
 create_skill_if_needed(section6, :bronze, "Identify the main parts of the pillar drill", 1, "TCH 2-12a")
@@ -245,13 +251,14 @@ create_skill_if_needed(section6, :gold, "Operate the pillar drill independently 
 puts "✅ Created Section: #{section6.name} with #{section6.skills.count} skills"
 
 # SECTION 7: WORKSHOP PROCESSES - SCROLL SAW
-section7 = Section.find_or_create_by!(name: "Workshop Processes: Scroll Saw") do |s|
-  s.category = "Design and Construct"
-  s.description = "The scroll saw allows precise cutting of curves and intricate shapes."
-  s.icon = "✂️"
-  s.position = 7
-  s.experiences_and_outcomes = "TCH 2-09a, TCH 2-12a, TCH 3-09a, TCH 3-12a, TCH 4-09a, TCH 4-12a"
-end
+# SECTION 7: WORKSHOP PROCESSES - SCROLL SAW
+section7 = Section.find_or_initialize_by(name: "Workshop Processes: Scroll Saw")
+section7.category = "Design and Construct"
+section7.description = "The scroll saw allows precise cutting of curves and intricate shapes."
+section7.icon = "✂️"
+section7.position = 7
+section7.experiences_and_outcomes = "TCH 2-09a, TCH 2-12a, TCH 3-09a, TCH 3-12a, TCH 4-09a, TCH 4-12a"
+section7.save!
 
 # Bronze Skills (Level 2)
 create_skill_if_needed(section7, :bronze, "Identify the main parts of the scroll saw", 1, "TCH 2-12a")
@@ -274,13 +281,14 @@ create_skill_if_needed(section7, :gold, "Operate the scroll saw independently to
 puts "✅ Created Section: #{section7.name} with #{section7.skills.count} skills"
 
 # SECTION 8: WORKSHOP PROCESSES - SANDERS
-section8 = Section.find_or_create_by!(name: "Workshop Processes: Sanders") do |s|
-  s.category = "Design and Construct"
-  s.description = "Sanders help achieve smooth, professional finishes quickly."
-  s.icon = "⚙️"
-  s.position = 8
-  s.experiences_and_outcomes = "TCH 2-09a, TCH 2-12a, TCH 3-09a, TCH 3-12a, TCH 4-09a, TCH 4-12a"
-end
+# SECTION 8: WORKSHOP PROCESSES - SANDERS
+section8 = Section.find_or_initialize_by(name: "Workshop Processes: Sanders")
+section8.category = "Design and Construct"
+section8.description = "Sanders help achieve smooth, professional finishes quickly."
+section8.icon = "⚙️"
+section8.position = 8
+section8.experiences_and_outcomes = "TCH 2-09a, TCH 2-12a, TCH 3-09a, TCH 3-12a, TCH 4-09a, TCH 4-12a"
+section8.save!
 
 # Bronze Skills (Level 2)
 create_skill_if_needed(section8, :bronze, "Identify belt and disc sanders and their uses", 1, "TCH 2-12a")
@@ -303,13 +311,14 @@ create_skill_if_needed(section8, :gold, "Work independently with sanders to a pr
 puts "✅ Created Section: #{section8.name} with #{section8.skills.count} skills"
 
 # SECTION 9: WORKSHOP PROCESSES - VACUUM FORMING AND HEAT BENDING
-section9 = Section.find_or_create_by!(name: "Workshop Processes: Vacuum Forming and Heat Bending") do |s|
-  s.category = "Design and Construct"
-  s.description = "Learn to shape plastic using heat for 3D forms."
-  s.icon = "🔥"
-  s.position = 9
-  s.experiences_and_outcomes = "TCH 2-09a, TCH 2-12a, TCH 3-09a, TCH 3-12a, TCH 4-09a, TCH 4-12a"
-end
+# SECTION 9: WORKSHOP PROCESSES - VACUUM FORMING AND HEAT BENDING
+section9 = Section.find_or_initialize_by(name: "Workshop Processes: Vacuum Forming and Heat Bending")
+section9.category = "Design and Construct"
+section9.description = "Learn to shape plastic using heat for 3D forms."
+section9.icon = "🔥"
+section9.position = 9
+section9.experiences_and_outcomes = "TCH 2-09a, TCH 2-12a, TCH 3-09a, TCH 3-12a, TCH 4-09a, TCH 4-12a"
+section9.save!
 
 # Bronze Skills (Level 2)
 create_skill_if_needed(section9, :bronze, "Understand how thermoplastics can be shaped with heat", 1, "")
@@ -336,13 +345,14 @@ puts "✅ Created Section: #{section9.name} with #{section9.skills.count} skills
 # ============================================================================
 
 # SECTION 10: WOOD PROPERTIES
-section10 = Section.find_or_create_by!(name: "Wood: Properties and Selection") do |s|
-  s.category = "Materials"
-  s.description = "Understanding wood properties helps you select the right material for your project."
-  s.icon = "🌳"
-  s.position = 10
-  s.experiences_and_outcomes = "TCH 2-10a, TCH 3-10a, TCH 4-10a"
-end
+# SECTION 10: WOOD PROPERTIES
+section10 = Section.find_or_initialize_by(name: "Wood: Properties and Selection")
+section10.category = "Materials"
+section10.description = "Understanding wood properties helps you select the right material for your project."
+section10.icon = "🌳"
+section10.position = 10
+section10.experiences_and_outcomes = "TCH 2-10a, TCH 3-10a, TCH 4-10a"
+section10.save!
 
 # Bronze Skills (Level 2)
 create_skill_if_needed(section10, :bronze, "Identify common types of wood (pine, oak, plywood, MDF)", 1, "")
@@ -365,13 +375,14 @@ create_skill_if_needed(section10, :gold, "Consider cost, availability, and aesth
 puts "✅ Created Section: #{section10.name} with #{section10.skills.count} skills"
 
 # SECTION 11: PLASTICS PROPERTIES
-section11 = Section.find_or_create_by!(name: "Plastics and Acrylics: Properties and Selection") do |s|
-  s.category = "Materials"
-  s.description = "Plastics are versatile materials used in countless applications."
-  s.icon = "🔷"
-  s.position = 11
-  s.experiences_and_outcomes = "TCH 2-10a, TCH 3-10a, TCH 4-10a"
-end
+# SECTION 11: PLASTICS PROPERTIES
+section11 = Section.find_or_initialize_by(name: "Plastics and Acrylics: Properties and Selection")
+section11.category = "Materials"
+section11.description = "Plastics are versatile materials used in countless applications."
+section11.icon = "🔷"
+section11.position = 11
+section11.experiences_and_outcomes = "TCH 2-10a, TCH 3-10a, TCH 4-10a"
+section11.save!
 
 # Bronze Skills (Level 2)
 create_skill_if_needed(section11, :bronze, "Identify common plastics (acrylic, polystyrene, PVC)", 1, "")
@@ -394,13 +405,14 @@ create_skill_if_needed(section11, :gold, "Consider lifecycle, disposal, and circ
 puts "✅ Created Section: #{section11.name} with #{section11.skills.count} skills"
 
 # SECTION 12: METALS PROPERTIES
-section12 = Section.find_or_create_by!(name: "Metals: Properties and Selection") do |s|
-  s.category = "Materials"
-  s.description = "Metals are strong, durable materials used in engineering and construction."
-  s.icon = "⚙️"
-  s.position = 12
-  s.experiences_and_outcomes = "TCH 2-10a, TCH 3-10a, TCH 4-10a"
-end
+# SECTION 12: METALS PROPERTIES
+section12 = Section.find_or_initialize_by(name: "Metals: Properties and Selection")
+section12.category = "Materials"
+section12.description = "Metals are strong, durable materials used in engineering and construction."
+section12.icon = "⚙️"
+section12.position = 12
+section12.experiences_and_outcomes = "TCH 2-10a, TCH 3-10a, TCH 4-10a"
+section12.save!
 
 # Bronze Skills (Level 2)
 create_skill_if_needed(section12, :bronze, "Identify common metals (steel, aluminum, copper, brass)", 1, "")
@@ -423,13 +435,14 @@ create_skill_if_needed(section12, :gold, "Consider cost, weight, and performance
 puts "✅ Created Section: #{section12.name} with #{section12.skills.count} skills"
 
 # SECTION 13: SUSTAINABILITY
-section13 = Section.find_or_create_by!(name: "Sustainability and Material Selection") do |s|
-  s.category = "Materials"
-  s.description = "Understanding sustainability helps us make responsible choices about materials."
-  s.icon = "♻️"
-  s.position = 13
-  s.experiences_and_outcomes = "TCH 2-06a, TCH 2-10a, TCH 3-10a, TCH 4-10a"
-end
+# SECTION 13: SUSTAINABILITY
+section13 = Section.find_or_initialize_by(name: "Sustainability and Material Selection")
+section13.category = "Materials"
+section13.description = "Understanding sustainability helps us make responsible choices about materials."
+section13.icon = "♻️"
+section13.position = 13
+section13.experiences_and_outcomes = "TCH 2-06a, TCH 2-10a, TCH 3-10a, TCH 4-10a"
+section13.save!
 
 # Bronze Skills (Level 2)
 create_skill_if_needed(section13, :bronze, "Understand the 3 Rs: Reduce, Reuse, Recycle", 1, "TCH 2-06a")
@@ -456,13 +469,14 @@ puts "✅ Created Section: #{section13.name} with #{section13.skills.count} skil
 # ============================================================================
 
 # SECTION 14: MANUAL SKETCHING
-section14 = Section.find_or_create_by!(name: "Manual Sketching and Rendering") do |s|
-  s.category = "Graphics"
-  s.description = "Sketching is essential for communicating design ideas quickly."
-  s.icon = "✏️"
-  s.position = 14
-  s.experiences_and_outcomes = ""
-end
+# SECTION 14: MANUAL SKETCHING
+section14 = Section.find_or_initialize_by(name: "Manual Sketching and Rendering")
+section14.category = "Graphics"
+section14.description = "Sketching is essential for communicating design ideas quickly."
+section14.icon = "✏️"
+section14.position = 14
+section14.experiences_and_outcomes = ""
+section14.save!
 
 # Bronze Skills (Level 2)
 create_skill_if_needed(section14, :bronze, "Use pencil to create simple sketches of products and ideas", 1, "")
@@ -485,13 +499,14 @@ create_skill_if_needed(section14, :gold, "Communicate design intent effectively 
 puts "✅ Created Section: #{section14.name} with #{section14.skills.count} skills"
 
 # SECTION 15: TECHNICAL DRAWING
-section15 = Section.find_or_create_by!(name: "Technical Drawing") do |s|
-  s.category = "Graphics"
-  s.description = "Technical drawing uses precise standards to communicate exact dimensions and details."
-  s.icon = "📐"
-  s.position = 15
-  s.experiences_and_outcomes = "TCH 2-11a, TCH 3-11a, TCH 4-11a"
-end
+# SECTION 15: TECHNICAL DRAWING
+section15 = Section.find_or_initialize_by(name: "Technical Drawing")
+section15.category = "Graphics"
+section15.description = "Technical drawing uses precise standards to communicate exact dimensions and details."
+section15.icon = "📐"
+section15.position = 15
+section15.experiences_and_outcomes = "TCH 2-11a, TCH 3-11a, TCH 4-11a"
+section15.save!
 
 # Bronze Skills (Level 2)
 create_skill_if_needed(section15, :bronze, "Use drawing equipment correctly (ruler, pencil, eraser)", 1, "TCH 2-11a")
@@ -514,13 +529,14 @@ create_skill_if_needed(section15, :gold, "Add tolerances, surface finishes, and 
 puts "✅ Created Section: #{section15.name} with #{section15.skills.count} skills"
 
 # SECTION 16: CAD SOFTWARE
-section16 = Section.find_or_create_by!(name: "CAD Software") do |s|
-  s.category = "Graphics"
-  s.description = "Computer-Aided Design allows precise 3D modeling and design."
-  s.icon = "💻"
-  s.position = 16
-  s.experiences_and_outcomes = "TCH 2-11a, TCH 3-11a, TCH 4-11a"
-end
+# SECTION 16: CAD SOFTWARE
+section16 = Section.find_or_initialize_by(name: "CAD Software")
+section16.category = "Graphics"
+section16.description = "Computer-Aided Design allows precise 3D modeling and design."
+section16.icon = "💻"
+section16.position = 16
+section16.experiences_and_outcomes = "TCH 2-11a, TCH 3-11a, TCH 4-11a"
+section16.save!
 
 # Bronze Skills (Level 2)
 create_skill_if_needed(section16, :bronze, "Navigate the CAD software interface and tools", 1, "TCH 2-11a")
@@ -544,13 +560,14 @@ create_skill_if_needed(section16, :gold, "Create professional presentation rende
 puts "✅ Created Section: #{section16.name} with #{section16.skills.count} skills"
 
 # SECTION 17: GRAPHIC DESIGN SOFTWARE
-section17 = Section.find_or_create_by!(name: "Graphic Design Software") do |s|
-  s.category = "Graphics"
-  s.description = "Graphic design software creates visual communication for products and presentations."
-  s.icon = "🎨"
-  s.position = 17
-  s.experiences_and_outcomes = ""
-end
+# SECTION 17: GRAPHIC DESIGN SOFTWARE
+section17 = Section.find_or_initialize_by(name: "Graphic Design Software")
+section17.category = "Graphics"
+section17.description = "Graphic design software creates visual communication for products and presentations."
+section17.icon = "🎨"
+section17.position = 17
+section17.experiences_and_outcomes = ""
+section17.save!
 
 # Bronze Skills (Level 2)
 create_skill_if_needed(section17, :bronze, "Navigate graphic design software interface", 1, "")
@@ -574,13 +591,14 @@ create_skill_if_needed(section17, :gold, "Produce print-ready and web-ready grap
 puts "✅ Created Section: #{section17.name} with #{section17.skills.count} skills"
 
 # SECTION 18: LASER CUTTING
-section18 = Section.find_or_create_by!(name: "Laser Cutting") do |s|
-  s.category = "Graphics"
-  s.description = "Laser cutting allows precise cutting and engraving of materials."
-  s.icon = "⚡"
-  s.position = 18
-  s.experiences_and_outcomes = "TCH 2-11a, TCH 2-12a, TCH 3-11a, TCH 3-12a, TCH 4-11a, TCH 4-12a"
-end
+# SECTION 18: LASER CUTTING
+section18 = Section.find_or_initialize_by(name: "Laser Cutting")
+section18.category = "Graphics"
+section18.description = "Laser cutting allows precise cutting and engraving of materials."
+section18.icon = "⚡"
+section18.position = 18
+section18.experiences_and_outcomes = "TCH 2-11a, TCH 2-12a, TCH 3-11a, TCH 3-12a, TCH 4-11a, TCH 4-12a"
+section18.save!
 
 # Bronze Skills (Level 2)
 create_skill_if_needed(section18, :bronze, "Understand how laser cutting works and what materials can be used", 1, "")
@@ -603,13 +621,14 @@ create_skill_if_needed(section18, :gold, "Troubleshoot cutting problems and adju
 puts "✅ Created Section: #{section18.name} with #{section18.skills.count} skills"
 
 # SECTION 19: 3D PRINTING
-section19 = Section.find_or_create_by!(name: "3D Printing") do |s|
-  s.category = "Graphics"
-  s.description = "3D printing transforms digital designs into physical objects."
-  s.icon = "🖨️"
-  s.position = 19
-  s.experiences_and_outcomes = "TCH 2-11a, TCH 2-12a, TCH 3-11a, TCH 3-12a, TCH 4-11a, TCH 4-12a"
-end
+# SECTION 19: 3D PRINTING
+section19 = Section.find_or_initialize_by(name: "3D Printing")
+section19.category = "Graphics"
+section19.description = "3D printing transforms digital designs into physical objects."
+section19.icon = "🖨️"
+section19.position = 19
+section19.experiences_and_outcomes = "TCH 2-11a, TCH 2-12a, TCH 3-11a, TCH 3-12a, TCH 4-11a, TCH 4-12a"
+section19.save!
 
 # Bronze Skills (Level 2)
 create_skill_if_needed(section19, :bronze, "Understand how 3D printing works and what it can make", 1, "")
@@ -676,8 +695,8 @@ puts "✅ Created classrooms: #{classroom1.full_name} and #{classroom2.full_name
 puts "\n👨‍🎓 Creating students..."
 
 # Scottish first and last names
-scottish_first_names = ["Fraser", "Cameron", "Ewan", "Lachlan", "Angus", "Callum", "Rory", "Hamish", "Finlay", "Alistair", "Isla", "Eilidh", "Skye", "Ailsa", "Morag"]
-scottish_last_names = ["MacLeod", "Campbell", "MacDonald", "Stewart", "Fraser", "Murray", "MacKenzie", "MacGregor", "MacLean", "MacPherson", "Robertson", "Anderson", "Ross", "Graham", "Sinclair"]
+scottish_first_names = [ "Fraser", "Cameron", "Ewan", "Lachlan", "Angus", "Callum", "Rory", "Hamish", "Finlay", "Alistair", "Isla", "Eilidh", "Skye", "Ailsa", "Morag" ]
+scottish_last_names = [ "MacLeod", "Campbell", "MacDonald", "Stewart", "Fraser", "Murray", "MacKenzie", "MacGregor", "MacLean", "MacPherson", "Robertson", "Anderson", "Ross", "Graham", "Sinclair" ]
 
 # Create students for classroom 1 (S1)
 s1_students = []
@@ -717,7 +736,7 @@ all_skills = Skill.all
 def mark_skills_for_student(student, section, level, percentage)
   skills = section.skills.where(level: level).ordered
   count_to_mark = (skills.count * percentage / 100.0).ceil
-  
+
   skills.take(count_to_mark).each do |skill|
     student_skill = StudentSkill.find_or_create_by!(
       student: student,
