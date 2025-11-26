@@ -4,9 +4,18 @@ class ClassroomsController < ApplicationController
   before_action :authorize_classroom_owner, only: [ :show, :create_student, :destroy_student, :bulk_mark_skills, :bulk_mark ]
 
   def show
-    @students = @classroom.students.order(:last_name, :first_name)
+    @students = @classroom.students
+                          .includes(student_skills: :skill)
+                          .order(:last_name, :first_name)
     @student = @classroom.students.build
     @sections = Section.ordered.includes(:skills)
+
+    # Cache total skills count for efficiency
+    @total_skills_by_level = {
+      bronze: Skill.bronze.count,
+      silver: Skill.silver.count,
+      gold: Skill.gold.count
+    }
   end
 
   def bulk_mark_skills

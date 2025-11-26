@@ -21,10 +21,126 @@
   <div class="bg-white rounded-lg shadow-md p-6 border border-gray-200">
     <h1 class="text-4xl font-bold text-gray-900 mb-2"><%= @classroom.full_name %></h1>
     <p class="text-gray-600">
-      <span class="font-medium"><%= @students.count %></span> 
+      <span class="font-medium"><%= @students.count %></span>
       <%= 'student'.pluralize(@students.count) %>
     </p>
   </div>
+
+  <!-- Student Progress Table -->
+  <% if @students.any? %>
+    <div class="bg-white rounded-lg shadow-md border border-gray-200 overflow-hidden">
+      <div class="px-6 py-4 border-b border-gray-200">
+        <h2 class="text-2xl font-semibold text-gray-900">Student Progress Overview</h2>
+        <p class="text-gray-600 mt-1">Track student achievement across all skill levels</p>
+      </div>
+
+      <div class="overflow-x-auto">
+        <table class="min-w-full divide-y divide-gray-200" id="progress-table">
+          <thead class="bg-gray-50">
+            <tr>
+              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer hover:bg-gray-100 transition-colors" onclick="sortTable(0)">
+                Student Name
+                <span class="ml-1">↕</span>
+              </th>
+              <th class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer hover:bg-gray-100 transition-colors" onclick="sortTable(1)">
+                Working Level
+                <span class="ml-1">↕</span>
+              </th>
+              <th class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer hover:bg-gray-100 transition-colors" onclick="sortTable(2)">
+                🥉 Bronze
+                <span class="ml-1">↕</span>
+              </th>
+              <th class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer hover:bg-gray-100 transition-colors" onclick="sortTable(3)">
+                🥈 Silver
+                <span class="ml-1">↕</span>
+              </th>
+              <th class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer hover:bg-gray-100 transition-colors" onclick="sortTable(4)">
+                🥇 Gold
+                <span class="ml-1">↕</span>
+              </th>
+              <th class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer hover:bg-gray-100 transition-colors" onclick="sortTable(5)">
+                Total Skills
+                <span class="ml-1">↕</span>
+              </th>
+            </tr>
+          </thead>
+          <tbody class="bg-white divide-y divide-gray-200">
+            <% @students.each do |student| %>
+              <%
+                total = student.total_skills_by_level
+                demonstrated = student.demonstrated_skills_by_level
+                percentages = student.skill_percentages
+              %>
+              <tr class="hover:bg-gray-50 transition-colors">
+                <td class="px-6 py-4 whitespace-nowrap">
+                  <%= link_to student.full_name, student_path(student),
+                      class: "text-primary hover:text-primary/80 font-medium" %>
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap text-center" data-sort="<%= student.working_level %>">
+                  <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-semibold
+                    <%= case student.working_level[0]
+                        when '2' then 'bg-amber-100 text-amber-800'
+                        when '3' then 'bg-gray-200 text-gray-800'
+                        when '4' then 'bg-yellow-100 text-yellow-800'
+                        end %>">
+                    <%= student.working_level %>
+                  </span>
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap text-center text-sm" data-sort="<%= percentages[:bronze] %>">
+                  <div class="font-medium text-gray-900">
+                    <%= demonstrated[:bronze] %>/<%= total[:bronze] %>
+                  </div>
+                  <div class="text-xs <%= percentages[:bronze] >= 60 ? 'text-green-600 font-semibold' : percentages[:bronze] >= 30 ? 'text-yellow-600' : 'text-gray-500' %>">
+                    <%= percentages[:bronze] %>%
+                  </div>
+                  <!-- Progress bar -->
+                  <div class="w-full bg-gray-200 rounded-full h-1.5 mt-1">
+                    <div class="bg-amber-600 h-1.5 rounded-full" style="width: <%= percentages[:bronze] %>%"></div>
+                  </div>
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap text-center text-sm" data-sort="<%= percentages[:silver] %>">
+                  <div class="font-medium text-gray-900">
+                    <%= demonstrated[:silver] %>/<%= total[:silver] %>
+                  </div>
+                  <div class="text-xs <%= percentages[:silver] >= 60 ? 'text-green-600 font-semibold' : percentages[:silver] >= 30 ? 'text-yellow-600' : 'text-gray-500' %>">
+                    <%= percentages[:silver] %>%
+                  </div>
+                  <!-- Progress bar -->
+                  <div class="w-full bg-gray-200 rounded-full h-1.5 mt-1">
+                    <div class="bg-gray-400 h-1.5 rounded-full" style="width: <%= percentages[:silver] %>%"></div>
+                  </div>
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap text-center text-sm" data-sort="<%= percentages[:gold] %>">
+                  <div class="font-medium text-gray-900">
+                    <%= demonstrated[:gold] %>/<%= total[:gold] %>
+                  </div>
+                  <div class="text-xs <%= percentages[:gold] >= 60 ? 'text-green-600 font-semibold' : percentages[:gold] >= 30 ? 'text-yellow-600' : 'text-gray-500' %>">
+                    <%= percentages[:gold] %>%
+                  </div>
+                  <!-- Progress bar -->
+                  <div class="w-full bg-gray-200 rounded-full h-1.5 mt-1">
+                    <div class="bg-yellow-500 h-1.5 rounded-full" style="width: <%= percentages[:gold] %>%"></div>
+                  </div>
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap text-center text-sm" data-sort="<%= student.total_percentage %>">
+                  <div class="font-bold text-gray-900">
+                    <%= student.total_demonstrated_count %>/<%= student.total_skills_count %>
+                  </div>
+                  <div class="text-xs font-semibold <%= student.total_percentage >= 60 ? 'text-green-600' : student.total_percentage >= 30 ? 'text-yellow-600' : 'text-gray-500' %>">
+                    <%= student.total_percentage %>%
+                  </div>
+                  <!-- Progress bar -->
+                  <div class="w-full bg-gray-200 rounded-full h-1.5 mt-1">
+                    <div class="<%= student.total_percentage >= 60 ? 'bg-green-600' : student.total_percentage >= 30 ? 'bg-yellow-500' : 'bg-gray-400' %> h-1.5 rounded-full" style="width: <%= student.total_percentage %>%"></div>
+                  </div>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  <% end %>
 
   <!-- Students Table -->
   <div class="bg-white rounded-lg shadow-md border border-gray-200 overflow-hidden">
@@ -140,6 +256,66 @@
   function deselectAllStudents() {
     document.querySelectorAll('.student-checkbox').forEach(checkbox => {
       checkbox.checked = false;
+    });
+  }
+
+  // Table sorting functionality
+  let sortDirection = {};
+
+  function sortTable(columnIndex) {
+    const table = document.getElementById('progress-table');
+    const tbody = table.querySelector('tbody');
+    const rows = Array.from(tbody.querySelectorAll('tr'));
+
+    // Initialize sort direction for this column if not set
+    if (sortDirection[columnIndex] === undefined) {
+      sortDirection[columnIndex] = 'asc';
+    }
+
+    // Toggle sort direction
+    sortDirection[columnIndex] = sortDirection[columnIndex] === 'asc' ? 'desc' : 'asc';
+    const isAscending = sortDirection[columnIndex] === 'asc';
+
+    rows.sort((a, b) => {
+      let aValue, bValue;
+
+      if (columnIndex === 0) {
+        // Sort by name (text content)
+        aValue = a.cells[columnIndex].textContent.trim().toLowerCase();
+        bValue = b.cells[columnIndex].textContent.trim().toLowerCase();
+      } else {
+        // Sort by data-sort attribute (numerical)
+        aValue = parseFloat(a.cells[columnIndex].getAttribute('data-sort')) || 0;
+        bValue = parseFloat(b.cells[columnIndex].getAttribute('data-sort')) || 0;
+
+        // For working level, extract number and letter for proper sorting
+        if (columnIndex === 1) {
+          const aStr = a.cells[columnIndex].getAttribute('data-sort');
+          const bStr = b.cells[columnIndex].getAttribute('data-sort');
+          aValue = parseInt(aStr[0]) * 10 + (aStr[1] === 'X' ? 0 : aStr[1] === 'B' ? 1 : 2);
+          bValue = parseInt(bStr[0]) * 10 + (bStr[1] === 'X' ? 0 : bStr[1] === 'B' ? 1 : 2);
+        }
+      }
+
+      if (aValue < bValue) return isAscending ? -1 : 1;
+      if (aValue > bValue) return isAscending ? 1 : -1;
+      return 0;
+    });
+
+    // Re-append rows in sorted order
+    rows.forEach(row => tbody.appendChild(row));
+
+    // Update sort indicators
+    const headers = table.querySelectorAll('th');
+    headers.forEach((header, index) => {
+      const indicator = header.querySelector('span');
+      if (indicator) {
+        if (index === columnIndex) {
+          indicator.textContent = isAscending ? '↑' : '↓';
+        } else {
+          indicator.textContent = '↕';
+        }
+      }
     });
   }
 </script>
