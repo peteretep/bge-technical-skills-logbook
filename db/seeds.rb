@@ -3,6 +3,58 @@
 
 puts "🌱 Seeding database with properly leveled Es & Os mapping..."
 
+# ============================================================================
+# EXPERIENCES AND OUTCOMES - Official Scottish CfE Descriptions
+# ============================================================================
+
+puts "\n📚 Seeding Experiences and Outcomes with official descriptions..."
+
+# Define all E&O codes with their official descriptions
+experiences_outcomes_data = [
+  # Second Level (TCH 2-)
+  {code: "TCH 2-09a", description: "I can create solutions in 3D and 2D and can justify the construction/graphic methods and the design features."},
+  {code: "TCH 2-09b", description: "[PLACEHOLDER - Please update with official Scottish CfE text for TCH 2-09b]"},
+  {code: "TCH 2-10a", description: "I can explore the properties and performance of materials before justifying the most appropriate material for a task."},
+  {code: "TCH 2-11a", description: "I can use a range of graphic techniques, manually and digitally, to communicate ideas, concepts or products, experimenting with the use of shape, colour and texture to enhance my work."},
+  {code: "TCH 2-12a", description: "[PLACEHOLDER - Please update with official Scottish CfE text for TCH 2-12a]"},
+  {code: "TCH 2-13a", description: "[PLACEHOLDER - Please update with official Scottish CfE text for TCH 2-13a]"},
+  {code: "TCH 2-06a", description: "I can make suggestions as to how individuals and organisations may use technologies to support sustainability."},
+
+  # Third Level (TCH 3-)
+  {code: "TCH 3-09a", description: "I can apply design thinking skills when designing and manufacturing models/products which satisfy the user or client."},
+  {code: "TCH 3-09b", description: "[PLACEHOLDER - Please update with official Scottish CfE text for TCH 3-09b]"},
+  {code: "TCH 3-10a", description: "I consider the material performance as well as sustainability of materials and apply these to real world tasks."},
+  {code: "TCH 3-11a", description: "[PLACEHOLDER - Please update with official Scottish CfE text for TCH 3-11a]"},
+  {code: "TCH 3-12a", description: "[PLACEHOLDER - Please update with official Scottish CfE text for TCH 3-12a]"},
+  {code: "TCH 3-13a", description: "[PLACEHOLDER - Please update with official Scottish CfE text for TCH 3-13a]"},
+  {code: "TCH 3-06a", description: "[PLACEHOLDER - Please update with official Scottish CfE text for TCH 3-06a]"},
+
+  # Fourth Level (TCH 4-)
+  {code: "TCH 4-09a", description: "[PLACEHOLDER - Please update with official Scottish CfE text for TCH 4-09a]"},
+  {code: "TCH 4-09b", description: "[PLACEHOLDER - Please update with official Scottish CfE text for TCH 4-09b]"},
+  {code: "TCH 4-10a", description: "[PLACEHOLDER - Please update with official Scottish CfE text for TCH 4-10a]"},
+  {code: "TCH 4-11a", description: "[PLACEHOLDER - Please update with official Scottish CfE text for TCH 4-11a]"},
+  {code: "TCH 4-12a", description: "[PLACEHOLDER - Please update with official Scottish CfE text for TCH 4-12a]"},
+  {code: "TCH 4-13a", description: "[PLACEHOLDER - Please update with official Scottish CfE text for TCH 4-13a]"},
+  {code: "TCH 4-06a", description: "[PLACEHOLDER - Please update with official Scottish CfE text for TCH 4-06a]"},
+
+  # Expressive Arts (EXA)
+  {code: "EXA 2-02a", description: "[PLACEHOLDER - Please update with official Scottish CfE text for EXA 2-02a]"},
+  {code: "EXA 3-02a", description: "[PLACEHOLDER - Please update with official Scottish CfE text for EXA 3-02a]"},
+  {code: "EXA 4-02a", description: "[PLACEHOLDER - Please update with official Scottish CfE text for EXA 4-02a]"}
+]
+
+# Create or update each E&O record
+experiences_outcomes_data.each do |data|
+  eo = ExperiencesOutcome.find_or_initialize_by(code: data[:code])
+  eo.description = data[:description]
+  eo.save!
+  puts "✅ Created/Updated E&O: #{eo.code}"
+end
+
+puts "✅ Seeded #{ExperiencesOutcome.count} Experiences and Outcomes"
+puts ""
+
 # Only clear student-related data, keep sections and skills
 Badge.destroy_all
 StudentSkill.destroy_all

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_11_26_181047) do
+ActiveRecord::Schema[7.2].define(version: 2025_11_26_203000) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -37,6 +37,28 @@ ActiveRecord::Schema[7.2].define(version: 2025_11_26_181047) do
     t.datetime "updated_at", null: false
     t.index ["user_id", "name"], name: "index_classrooms_on_user_id_and_name"
     t.index ["user_id"], name: "index_classrooms_on_user_id"
+  end
+
+  create_table "experiences_outcomes", force: :cascade do |t|
+    t.string "code"
+    t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["code"], name: "index_experiences_outcomes_on_code", unique: true
+  end
+
+  create_table "experiences_outcomes_sections", id: false, force: :cascade do |t|
+    t.bigint "section_id", null: false
+    t.bigint "experiences_outcome_id", null: false
+    t.index ["experiences_outcome_id", "section_id"], name: "index_sections_eo_on_eo_and_section"
+    t.index ["section_id", "experiences_outcome_id"], name: "index_sections_eo_on_section_and_eo"
+  end
+
+  create_table "experiences_outcomes_skills", id: false, force: :cascade do |t|
+    t.bigint "skill_id", null: false
+    t.bigint "experiences_outcome_id", null: false
+    t.index ["experiences_outcome_id", "skill_id"], name: "index_skills_eo_on_eo_and_skill"
+    t.index ["skill_id", "experiences_outcome_id"], name: "index_skills_eo_on_skill_and_eo"
   end
 
   create_table "sections", force: :cascade do |t|
