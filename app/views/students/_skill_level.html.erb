@@ -62,6 +62,11 @@
           class: "w-4 h-4" %>
       <span class="text-sm flex-1 <%= is_demonstrated ? '' : 'text-gray-700' %>">
         <%= skill.description %>
+        <% if skill.experiences_and_outcomes.present? %>
+          <span class="ml-2 px-2 py-0.5 bg-purple-100 text-purple-700 text-xs rounded">
+            E&O: <%= skill.experiences_and_outcomes %>
+          </span>
+        <% end %>
       </span>
       <% if is_demonstrated && student_skill.demonstrated_at %>
         <span class="text-xs text-gray-500"><%= student_skill.demonstrated_at.strftime('%d %b') %></span>

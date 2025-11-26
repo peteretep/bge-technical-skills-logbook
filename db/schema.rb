@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_11_11_221402) do
+ActiveRecord::Schema[7.2].define(version: 2025_11_26_181047) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -47,6 +47,7 @@ ActiveRecord::Schema[7.2].define(version: 2025_11_11_221402) do
     t.integer "position", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.text "experiences_and_outcomes"
     t.index ["category"], name: "index_sections_on_category"
     t.index ["position"], name: "index_sections_on_position"
   end
@@ -58,6 +59,7 @@ ActiveRecord::Schema[7.2].define(version: 2025_11_11_221402) do
     t.integer "position", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.text "experiences_and_outcomes"
     t.index ["position"], name: "index_skills_on_position"
     t.index ["section_id", "level"], name: "index_skills_on_section_id_and_level"
     t.index ["section_id"], name: "index_skills_on_section_id"

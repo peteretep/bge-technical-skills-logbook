@@ -35,6 +35,11 @@
         <div class="w-4 h-4 border-2 border-gray-300 rounded-full group-hover:border-primary"></div>
         <span class="text-sm flex-1 text-gray-700 group-hover:text-gray-900">
           <%= skill.description %>
+          <% if skill.experiences_and_outcomes.present? %>
+            <span class="ml-2 px-2 py-0.5 bg-purple-100 text-purple-700 text-xs rounded">
+              E&O: <%= skill.experiences_and_outcomes %>
+            </span>
+          <% end %>
         </span>
         <span class="text-xs text-primary opacity-0 group-hover:opacity-100 transition-opacity font-medium">
           Apply to Selected →
