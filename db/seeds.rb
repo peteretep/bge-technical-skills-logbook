@@ -85,7 +85,7 @@ create_skill_if_needed(section1, :bronze, "Mark centre points for drilling using
 create_skill_if_needed(section1, :silver, "Use a marking gauge to mark parallel lines at a set distance", 1, "TCH 3-12a")
 create_skill_if_needed(section1, :silver, "Mark out curves and circles using compasses or templates", 2, "TCH 3-09a, TCH 3-12a")
 create_skill_if_needed(section1, :silver, "Use a sliding bevel to mark and transfer angles", 3, "TCH 3-12a")
-create_skill_if_needed(section1, :silver, "Select appropriate marking tools for different materials (scriber for metal/plastic)", 4, "TCH 3-12a, TCH 3-13a")
+create_skill_if_needed(section1, :silver, "Select appropriate marking tools for different materials (scriber for metal/plastic)", 4, "TCH 3-12a")
 
 # Gold Skills (Level 4)
 create_skill_if_needed(section1, :gold, "Use a mortise gauge to mark multiple parallel lines accurately", 1, "TCH 4-12a")
@@ -113,12 +113,12 @@ create_skill_if_needed(section2, :bronze, "Use a bench hook correctly for safe c
 # Silver Skills (Level 3)
 create_skill_if_needed(section2, :silver, "Use a coping saw to cut curves in wood or plastic", 1, "TCH 3-12a")
 create_skill_if_needed(section2, :silver, "Cut accurately to within 1mm of a marked line", 2, "TCH 3-12a")
-create_skill_if_needed(section2, :silver, "Select the appropriate saw for different cuts (tenon, coping, hacksaw)", 3, "TCH 3-12a, TCH 3-13a")
-create_skill_if_needed(section2, :silver, "Use a hacksaw to cut metal safely and accurately", 4, "TCH 3-12a, TCH 3-13a")
+create_skill_if_needed(section2, :silver, "Select the appropriate saw for different cuts (tenon, coping, hacksaw)", 3, "TCH 3-12a")
+create_skill_if_needed(section2, :silver, "Use a hacksaw to cut metal safely and accurately", 4, "TCH 3-12a")
 
 # Gold Skills (Level 4)
 create_skill_if_needed(section2, :gold, "Cut joints (housing joints, halving joints) accurately by hand", 1, "TCH 4-09a, TCH 4-12a")
-create_skill_if_needed(section2, :gold, "Adjust cutting technique for different materials and thicknesses", 2, "TCH 4-12a, TCH 4-13a")
+create_skill_if_needed(section2, :gold, "Adjust cutting technique for different materials and thicknesses", 2, "TCH 4-12a")
 create_skill_if_needed(section2, :gold, "Cut complex curves smoothly without breaking the blade", 3, "TCH 4-12a")
 create_skill_if_needed(section2, :gold, "Demonstrate clean, accurate cuts requiring minimal finishing", 4, "TCH 4-10a, TCH 4-12a")
 
@@ -173,14 +173,14 @@ create_skill_if_needed(section4, :bronze, "Use a hammer safely to drive panel pi
 
 # Silver Skills (Level 3)
 create_skill_if_needed(section4, :silver, "Countersink screw holes for flush finish", 1, "TCH 3-12a")
-create_skill_if_needed(section4, :silver, "Select appropriate adhesive for different materials (PVA, contact adhesive, epoxy)", 2, "TCH 3-12a, TCH 3-13a")
+create_skill_if_needed(section4, :silver, "Select appropriate adhesive for different materials (PVA, contact adhesive, epoxy)", 2, "TCH 3-12a")
 create_skill_if_needed(section4, :silver, "Use a nail punch to sink panel pins below the surface", 3, "TCH 3-12a")
 create_skill_if_needed(section4, :silver, "Create simple joints using dowels", 4, "TCH 3-09a, TCH 3-12a")
 create_skill_if_needed(section4, :silver, "Use knock-down fittings (cam locks, barrel nuts) correctly", 5, "TCH 3-12a")
 
 # Gold Skills (Level 4)
 create_skill_if_needed(section4, :gold, "Use a chisel safely to cut housing or mortise joints", 1, "TCH 4-09a, TCH 4-12a")
-create_skill_if_needed(section4, :gold, "Select and justify joining methods based on material and purpose", 2, "TCH 4-10a, TCH 4-12a, TCH 4-13a")
+create_skill_if_needed(section4, :gold, "Select and justify joining methods based on material and purpose", 2, "TCH 4-10a, TCH 4-12a")
 create_skill_if_needed(section4, :gold, "Apply clamps with correct pressure and spacing for different joints", 3, "TCH 4-12a")
 create_skill_if_needed(section4, :gold, "Create strong, accurate joints that meet quality standards", 4, "TCH 4-10a, TCH 4-12a")
 
@@ -232,12 +232,12 @@ create_skill_if_needed(section6, :bronze, "Wear appropriate PPE when using the p
 
 # Silver Skills (Level 3)
 create_skill_if_needed(section6, :silver, "Change drill bits safely and select appropriate sizes", 1, "TCH 3-12a")
-create_skill_if_needed(section6, :silver, "Drill accurate holes in different materials (wood, plastic, metal)", 2, "TCH 3-12a, TCH 3-13a")
+create_skill_if_needed(section6, :silver, "Drill accurate holes in different materials (wood, plastic, metal)", 2, "TCH 3-12a")
 create_skill_if_needed(section6, :silver, "Use a centre punch to mark drilling positions accurately", 3, "TCH 3-12a")
 create_skill_if_needed(section6, :silver, "Control drilling depth using the depth stop", 4, "TCH 3-12a")
 
 # Gold Skills (Level 4)
-create_skill_if_needed(section6, :gold, "Adjust drill speed for different materials and bit sizes", 1, "TCH 4-12a, TCH 4-13a")
+create_skill_if_needed(section6, :gold, "Adjust drill speed for different materials and bit sizes", 1, "TCH 4-12a")
 create_skill_if_needed(section6, :gold, "Use specialist bits (forstner, countersink, hole saw) appropriately", 2, "TCH 4-12a")
 create_skill_if_needed(section6, :gold, "Drill accurate holes for dowel joints or knock-down fittings", 3, "TCH 4-09a, TCH 4-12a")
 create_skill_if_needed(section6, :gold, "Operate the pillar drill independently with confidence", 4, "TCH 4-12a")
@@ -262,13 +262,13 @@ create_skill_if_needed(section7, :bronze, "Understand and follow safety procedur
 # Silver Skills (Level 3)
 create_skill_if_needed(section7, :silver, "Cut complex curves and tight corners accurately", 1, "TCH 3-12a")
 create_skill_if_needed(section7, :silver, "Create internal cuts by drilling access holes", 2, "TCH 3-09a, TCH 3-12a")
-create_skill_if_needed(section7, :silver, "Cut different materials (wood, plastic) with appropriate blade speeds", 3, "TCH 3-12a, TCH 3-13a")
+create_skill_if_needed(section7, :silver, "Cut different materials (wood, plastic) with appropriate blade speeds", 3, "TCH 3-12a")
 create_skill_if_needed(section7, :silver, "Feed material at appropriate speed to prevent blade breakage", 4, "TCH 3-12a")
 
 # Gold Skills (Level 4)
 create_skill_if_needed(section7, :gold, "Change and tension scroll saw blades correctly", 1, "TCH 4-12a")
 create_skill_if_needed(section7, :gold, "Cut intricate patterns and detailed designs accurately", 2, "TCH 4-12a")
-create_skill_if_needed(section7, :gold, "Select appropriate blade types for different materials and cut types", 3, "TCH 4-12a, TCH 4-13a")
+create_skill_if_needed(section7, :gold, "Select appropriate blade types for different materials and cut types", 3, "TCH 4-12a")
 create_skill_if_needed(section7, :gold, "Operate the scroll saw independently to a high standard", 4, "TCH 4-12a")
 
 puts "✅ Created Section: #{section7.name} with #{section7.skills.count} skills"
@@ -296,7 +296,7 @@ create_skill_if_needed(section8, :silver, "Avoid over-sanding and maintain accur
 
 # Gold Skills (Level 4)
 create_skill_if_needed(section8, :gold, "Sand bevels and angles accurately using the tilting table", 1, "TCH 4-12a")
-create_skill_if_needed(section8, :gold, "Achieve consistent, smooth finishes on different materials", 2, "TCH 4-12a, TCH 4-13a")
+create_skill_if_needed(section8, :gold, "Achieve consistent, smooth finishes on different materials", 2, "TCH 4-12a")
 create_skill_if_needed(section8, :gold, "Select appropriate sanding methods for different finishing requirements", 3, "TCH 4-10a, TCH 4-12a")
 create_skill_if_needed(section8, :gold, "Work independently with sanders to a professional standard", 4, "TCH 4-12a")
 
@@ -308,24 +308,24 @@ section9 = Section.find_or_create_by!(name: "Workshop Processes: Vacuum Forming 
   s.description = "Learn to shape plastic using heat for 3D forms."
   s.icon = "🔥"
   s.position = 9
-  s.experiences_and_outcomes = "TCH 2-09a, TCH 2-12a, TCH 2-13a, TCH 3-09a, TCH 3-12a, TCH 3-13a, TCH 4-09a, TCH 4-12a, TCH 4-13a"
+  s.experiences_and_outcomes = "TCH 2-09a, TCH 2-12a, TCH 3-09a, TCH 3-12a, TCH 4-09a, TCH 4-12a"
 end
 
 # Bronze Skills (Level 2)
-create_skill_if_needed(section9, :bronze, "Understand how thermoplastics can be shaped with heat", 1, "TCH 2-13a")
-create_skill_if_needed(section9, :bronze, "Use the strip heater safely with supervision to bend acrylic", 2, "TCH 2-12a, TCH 2-13a")
+create_skill_if_needed(section9, :bronze, "Understand how thermoplastics can be shaped with heat", 1, "")
+create_skill_if_needed(section9, :bronze, "Use the strip heater safely with supervision to bend acrylic", 2, "TCH 2-12a")
 create_skill_if_needed(section9, :bronze, "Create simple right-angle bends in acrylic", 3, "TCH 2-12a")
 create_skill_if_needed(section9, :bronze, "Follow safety procedures when working with heated plastic", 4, "TCH 2-12a")
 
 # Silver Skills (Level 3)
 create_skill_if_needed(section9, :silver, "Create accurate multiple bends in acrylic using the strip heater", 1, "TCH 3-12a")
 create_skill_if_needed(section9, :silver, "Design and make a simple mould for vacuum forming", 2, "TCH 3-09a, TCH 3-12a")
-create_skill_if_needed(section9, :silver, "Assist with vacuum forming process under supervision", 3, "TCH 3-12a, TCH 3-13a")
+create_skill_if_needed(section9, :silver, "Assist with vacuum forming process under supervision", 3, "TCH 3-12a")
 create_skill_if_needed(section9, :silver, "Understand mould design principles (draft angles, undercuts)", 4, "TCH 3-09a")
 
 # Gold Skills (Level 4)
 create_skill_if_needed(section9, :gold, "Create complex bent forms with accurate angles", 1, "TCH 4-12a")
-create_skill_if_needed(section9, :gold, "Design and produce moulds that account for plastic thickness and draw", 2, "TCH 4-09a, TCH 4-13a")
+create_skill_if_needed(section9, :gold, "Design and produce moulds that account for plastic thickness and draw", 2, "TCH 4-09a")
 create_skill_if_needed(section9, :gold, "Operate vacuum former independently with teacher approval", 3, "TCH 4-12a")
 create_skill_if_needed(section9, :gold, "Troubleshoot forming problems and adjust technique accordingly", 4, "TCH 4-10a, TCH 4-12a")
 
@@ -341,26 +341,26 @@ section10 = Section.find_or_create_by!(name: "Wood: Properties and Selection") d
   s.description = "Understanding wood properties helps you select the right material for your project."
   s.icon = "🌳"
   s.position = 10
-  s.experiences_and_outcomes = "TCH 2-10a, TCH 2-13a, TCH 3-10a, TCH 3-13a, TCH 4-10a, TCH 4-13a"
+  s.experiences_and_outcomes = "TCH 2-10a, TCH 3-10a, TCH 4-10a"
 end
 
 # Bronze Skills (Level 2)
-create_skill_if_needed(section10, :bronze, "Identify common types of wood (pine, oak, plywood, MDF)", 1, "TCH 2-13a")
-create_skill_if_needed(section10, :bronze, "Understand the difference between softwood and hardwood", 2, "TCH 2-13a")
-create_skill_if_needed(section10, :bronze, "Describe basic properties of wood (grain, texture, color)", 3, "TCH 2-13a")
-create_skill_if_needed(section10, :bronze, "Select appropriate wood for a simple project", 4, "TCH 2-10a, TCH 2-13a")
+create_skill_if_needed(section10, :bronze, "Identify common types of wood (pine, oak, plywood, MDF)", 1, "")
+create_skill_if_needed(section10, :bronze, "Understand the difference between softwood and hardwood", 2, "")
+create_skill_if_needed(section10, :bronze, "Describe basic properties of wood (grain, texture, color)", 3, "")
+create_skill_if_needed(section10, :bronze, "Select appropriate wood for a simple project", 4, "TCH 2-10a")
 
 # Silver Skills (Level 3)
-create_skill_if_needed(section10, :silver, "Explain properties like strength, workability, and durability", 1, "TCH 3-13a")
-create_skill_if_needed(section10, :silver, "Understand manufactured boards (plywood, MDF, chipboard) and their uses", 2, "TCH 3-13a")
-create_skill_if_needed(section10, :silver, "Compare advantages and disadvantages of different woods", 3, "TCH 3-10a, TCH 3-13a")
+create_skill_if_needed(section10, :silver, "Explain properties like strength, workability, and durability", 1, "")
+create_skill_if_needed(section10, :silver, "Understand manufactured boards (plywood, MDF, chipboard) and their uses", 2, "")
+create_skill_if_needed(section10, :silver, "Compare advantages and disadvantages of different woods", 3, "TCH 3-10a")
 create_skill_if_needed(section10, :silver, "Consider environmental impact when selecting wood", 4, "TCH 3-10a")
 
 # Gold Skills (Level 4)
-create_skill_if_needed(section10, :gold, "Analyze and justify wood selection based on functional requirements", 1, "TCH 4-10a, TCH 4-13a")
+create_skill_if_needed(section10, :gold, "Analyze and justify wood selection based on functional requirements", 1, "TCH 4-10a")
 create_skill_if_needed(section10, :gold, "Understand sustainability issues (FSC certification, deforestation)", 2, "TCH 4-10a")
-create_skill_if_needed(section10, :gold, "Explain how wood properties affect manufacturing processes", 3, "TCH 4-13a")
-create_skill_if_needed(section10, :gold, "Consider cost, availability, and aesthetics in material selection", 4, "TCH 4-10a, TCH 4-13a")
+create_skill_if_needed(section10, :gold, "Explain how wood properties affect manufacturing processes", 3, "")
+create_skill_if_needed(section10, :gold, "Consider cost, availability, and aesthetics in material selection", 4, "TCH 4-10a")
 
 puts "✅ Created Section: #{section10.name} with #{section10.skills.count} skills"
 
@@ -370,26 +370,26 @@ section11 = Section.find_or_create_by!(name: "Plastics and Acrylics: Properties 
   s.description = "Plastics are versatile materials used in countless applications."
   s.icon = "🔷"
   s.position = 11
-  s.experiences_and_outcomes = "TCH 2-10a, TCH 2-13a, TCH 3-10a, TCH 3-13a, TCH 4-10a, TCH 4-13a"
+  s.experiences_and_outcomes = "TCH 2-10a, TCH 3-10a, TCH 4-10a"
 end
 
 # Bronze Skills (Level 2)
-create_skill_if_needed(section11, :bronze, "Identify common plastics (acrylic, polystyrene, PVC)", 1, "TCH 2-13a")
-create_skill_if_needed(section11, :bronze, "Understand the difference between thermoplastics and thermosetting plastics", 2, "TCH 2-13a")
-create_skill_if_needed(section11, :bronze, "Describe basic properties of plastics (flexibility, transparency, color)", 3, "TCH 2-13a")
-create_skill_if_needed(section11, :bronze, "Select appropriate plastic for a simple project", 4, "TCH 2-10a, TCH 2-13a")
+create_skill_if_needed(section11, :bronze, "Identify common plastics (acrylic, polystyrene, PVC)", 1, "")
+create_skill_if_needed(section11, :bronze, "Understand the difference between thermoplastics and thermosetting plastics", 2, "")
+create_skill_if_needed(section11, :bronze, "Describe basic properties of plastics (flexibility, transparency, color)", 3, "")
+create_skill_if_needed(section11, :bronze, "Select appropriate plastic for a simple project", 4, "TCH 2-10a")
 
 # Silver Skills (Level 3)
-create_skill_if_needed(section11, :silver, "Explain properties like impact resistance, chemical resistance, and formability", 1, "TCH 3-13a")
-create_skill_if_needed(section11, :silver, "Understand how different plastics are formed (vacuum forming, injection molding)", 2, "TCH 3-13a")
-create_skill_if_needed(section11, :silver, "Compare advantages and disadvantages of different plastics", 3, "TCH 3-10a, TCH 3-13a")
+create_skill_if_needed(section11, :silver, "Explain properties like impact resistance, chemical resistance, and formability", 1, "")
+create_skill_if_needed(section11, :silver, "Understand how different plastics are formed (vacuum forming, injection molding)", 2, "")
+create_skill_if_needed(section11, :silver, "Compare advantages and disadvantages of different plastics", 3, "TCH 3-10a")
 create_skill_if_needed(section11, :silver, "Identify recycling symbols and understand plastic recycling", 4, "TCH 3-10a")
 
 # Gold Skills (Level 4)
-create_skill_if_needed(section11, :gold, "Analyze and justify plastic selection based on functional requirements", 1, "TCH 4-10a, TCH 4-13a")
+create_skill_if_needed(section11, :gold, "Analyze and justify plastic selection based on functional requirements", 1, "TCH 4-10a")
 create_skill_if_needed(section11, :gold, "Understand environmental impact of plastics and alternatives", 2, "TCH 4-10a")
-create_skill_if_needed(section11, :gold, "Explain how plastic properties affect manufacturing processes", 3, "TCH 4-13a")
-create_skill_if_needed(section11, :gold, "Consider lifecycle, disposal, and circular economy in material selection", 4, "TCH 4-10a, TCH 4-13a")
+create_skill_if_needed(section11, :gold, "Explain how plastic properties affect manufacturing processes", 3, "")
+create_skill_if_needed(section11, :gold, "Consider lifecycle, disposal, and circular economy in material selection", 4, "TCH 4-10a")
 
 puts "✅ Created Section: #{section11.name} with #{section11.skills.count} skills"
 
@@ -399,26 +399,26 @@ section12 = Section.find_or_create_by!(name: "Metals: Properties and Selection")
   s.description = "Metals are strong, durable materials used in engineering and construction."
   s.icon = "⚙️"
   s.position = 12
-  s.experiences_and_outcomes = "TCH 2-10a, TCH 2-13a, TCH 3-10a, TCH 3-13a, TCH 4-10a, TCH 4-13a"
+  s.experiences_and_outcomes = "TCH 2-10a, TCH 3-10a, TCH 4-10a"
 end
 
 # Bronze Skills (Level 2)
-create_skill_if_needed(section12, :bronze, "Identify common metals (steel, aluminum, copper, brass)", 1, "TCH 2-13a")
-create_skill_if_needed(section12, :bronze, "Understand the difference between ferrous and non-ferrous metals", 2, "TCH 2-13a")
-create_skill_if_needed(section12, :bronze, "Describe basic properties of metals (strength, weight, appearance)", 3, "TCH 2-13a")
-create_skill_if_needed(section12, :bronze, "Select appropriate metal for a simple project", 4, "TCH 2-10a, TCH 2-13a")
+create_skill_if_needed(section12, :bronze, "Identify common metals (steel, aluminum, copper, brass)", 1, "")
+create_skill_if_needed(section12, :bronze, "Understand the difference between ferrous and non-ferrous metals", 2, "")
+create_skill_if_needed(section12, :bronze, "Describe basic properties of metals (strength, weight, appearance)", 3, "")
+create_skill_if_needed(section12, :bronze, "Select appropriate metal for a simple project", 4, "TCH 2-10a")
 
 # Silver Skills (Level 3)
-create_skill_if_needed(section12, :silver, "Explain properties like tensile strength, hardness, ductility, and conductivity", 1, "TCH 3-13a")
-create_skill_if_needed(section12, :silver, "Understand alloys and why they are used (steel, brass, bronze)", 2, "TCH 3-13a")
-create_skill_if_needed(section12, :silver, "Compare advantages and disadvantages of different metals", 3, "TCH 3-10a, TCH 3-13a")
-create_skill_if_needed(section12, :silver, "Understand corrosion and methods of protection (painting, galvanizing)", 4, "TCH 3-13a")
+create_skill_if_needed(section12, :silver, "Explain properties like tensile strength, hardness, ductility, and conductivity", 1, "")
+create_skill_if_needed(section12, :silver, "Understand alloys and why they are used (steel, brass, bronze)", 2, "")
+create_skill_if_needed(section12, :silver, "Compare advantages and disadvantages of different metals", 3, "TCH 3-10a")
+create_skill_if_needed(section12, :silver, "Understand corrosion and methods of protection (painting, galvanizing)", 4, "")
 
 # Gold Skills (Level 4)
-create_skill_if_needed(section12, :gold, "Analyze and justify metal selection based on functional requirements", 1, "TCH 4-10a, TCH 4-13a")
+create_skill_if_needed(section12, :gold, "Analyze and justify metal selection based on functional requirements", 1, "TCH 4-10a")
 create_skill_if_needed(section12, :gold, "Understand sustainability issues (mining, recycling, embodied energy)", 2, "TCH 4-10a")
-create_skill_if_needed(section12, :gold, "Explain how metal properties affect manufacturing processes", 3, "TCH 4-13a")
-create_skill_if_needed(section12, :gold, "Consider cost, weight, and performance in material selection", 4, "TCH 4-10a, TCH 4-13a")
+create_skill_if_needed(section12, :gold, "Explain how metal properties affect manufacturing processes", 3, "")
+create_skill_if_needed(section12, :gold, "Consider cost, weight, and performance in material selection", 4, "TCH 4-10a")
 
 puts "✅ Created Section: #{section12.name} with #{section12.skills.count} skills"
 
@@ -428,7 +428,7 @@ section13 = Section.find_or_create_by!(name: "Sustainability and Material Select
   s.description = "Understanding sustainability helps us make responsible choices about materials."
   s.icon = "♻️"
   s.position = 13
-  s.experiences_and_outcomes = "TCH 2-06a, TCH 2-10a, TCH 3-06a, TCH 3-10a, TCH 4-06a, TCH 4-10a"
+  s.experiences_and_outcomes = "TCH 2-06a, TCH 2-10a, TCH 3-10a, TCH 4-10a"
 end
 
 # Bronze Skills (Level 2)
@@ -438,16 +438,16 @@ create_skill_if_needed(section13, :bronze, "Minimize waste when cutting and maki
 create_skill_if_needed(section13, :bronze, "Understand basic environmental impact of materials", 4, "TCH 2-06a")
 
 # Silver Skills (Level 3)
-create_skill_if_needed(section13, :silver, "Understand lifecycle of products from raw materials to disposal", 1, "TCH 3-06a")
-create_skill_if_needed(section13, :silver, "Compare environmental impact of different materials", 2, "TCH 3-06a, TCH 3-10a")
+create_skill_if_needed(section13, :silver, "Understand lifecycle of products from raw materials to disposal", 1, "")
+create_skill_if_needed(section13, :silver, "Compare environmental impact of different materials", 2, "TCH 3-10a")
 create_skill_if_needed(section13, :silver, "Design products with end-of-life disposal in mind", 3, "TCH 3-10a")
-create_skill_if_needed(section13, :silver, "Understand carbon footprint and embodied energy", 4, "TCH 3-06a")
+create_skill_if_needed(section13, :silver, "Understand carbon footprint and embodied energy", 4, "")
 
 # Gold Skills (Level 4)
-create_skill_if_needed(section13, :gold, "Analyze products using lifecycle assessment principles", 1, "TCH 4-06a, TCH 4-10a")
-create_skill_if_needed(section13, :gold, "Understand circular economy and design for disassembly", 2, "TCH 4-06a")
-create_skill_if_needed(section13, :gold, "Evaluate and justify material choices based on sustainability criteria", 3, "TCH 4-06a, TCH 4-10a")
-create_skill_if_needed(section13, :gold, "Consider social and economic factors alongside environmental impact", 4, "TCH 4-06a, TCH 4-10a")
+create_skill_if_needed(section13, :gold, "Analyze products using lifecycle assessment principles", 1, "TCH 4-10a")
+create_skill_if_needed(section13, :gold, "Understand circular economy and design for disassembly", 2, "")
+create_skill_if_needed(section13, :gold, "Evaluate and justify material choices based on sustainability criteria", 3, "TCH 4-10a")
+create_skill_if_needed(section13, :gold, "Consider social and economic factors alongside environmental impact", 4, "TCH 4-10a")
 
 puts "✅ Created Section: #{section13.name} with #{section13.skills.count} skills"
 
@@ -461,26 +461,26 @@ section14 = Section.find_or_create_by!(name: "Manual Sketching and Rendering") d
   s.description = "Sketching is essential for communicating design ideas quickly."
   s.icon = "✏️"
   s.position = 14
-  s.experiences_and_outcomes = "TCH 2-09b, EXA 2-02a, TCH 3-09b, EXA 3-02a, TCH 4-09b, EXA 4-02a"
+  s.experiences_and_outcomes = ""
 end
 
 # Bronze Skills (Level 2)
-create_skill_if_needed(section14, :bronze, "Use pencil to create simple sketches of products and ideas", 1, "TCH 2-09b, EXA 2-02a")
-create_skill_if_needed(section14, :bronze, "Add basic labels and notes to sketches", 2, "TCH 2-09b")
-create_skill_if_needed(section14, :bronze, "Draw basic 3D shapes (cube, cylinder, sphere)", 3, "EXA 2-02a")
-create_skill_if_needed(section14, :bronze, "Use different line weights to show importance", 4, "EXA 2-02a")
+create_skill_if_needed(section14, :bronze, "Use pencil to create simple sketches of products and ideas", 1, "")
+create_skill_if_needed(section14, :bronze, "Add basic labels and notes to sketches", 2, "")
+create_skill_if_needed(section14, :bronze, "Draw basic 3D shapes (cube, cylinder, sphere)", 3, "")
+create_skill_if_needed(section14, :bronze, "Use different line weights to show importance", 4, "")
 
 # Silver Skills (Level 3)
-create_skill_if_needed(section14, :silver, "Sketch in perspective to show depth and form", 1, "TCH 3-09b, EXA 3-02a")
-create_skill_if_needed(section14, :silver, "Use rendering techniques (shading, color, tone) to enhance sketches", 2, "EXA 3-02a")
-create_skill_if_needed(section14, :silver, "Add detail to show materials, textures, and finishes", 3, "TCH 3-09b, EXA 3-02a")
-create_skill_if_needed(section14, :silver, "Create multiple design ideas through rapid sketching", 4, "TCH 3-09b")
+create_skill_if_needed(section14, :silver, "Sketch in perspective to show depth and form", 1, "")
+create_skill_if_needed(section14, :silver, "Use rendering techniques (shading, color, tone) to enhance sketches", 2, "")
+create_skill_if_needed(section14, :silver, "Add detail to show materials, textures, and finishes", 3, "")
+create_skill_if_needed(section14, :silver, "Create multiple design ideas through rapid sketching", 4, "")
 
 # Gold Skills (Level 4)
-create_skill_if_needed(section14, :gold, "Produce high-quality presentation sketches with professional rendering", 1, "TCH 4-09b, EXA 4-02a")
-create_skill_if_needed(section14, :gold, "Use advanced rendering techniques (reflections, highlights, shadows)", 2, "EXA 4-02a")
-create_skill_if_needed(section14, :gold, "Sketch complex forms and products accurately from different angles", 3, "TCH 4-09b, EXA 4-02a")
-create_skill_if_needed(section14, :gold, "Communicate design intent effectively through visual communication", 4, "TCH 4-09b")
+create_skill_if_needed(section14, :gold, "Produce high-quality presentation sketches with professional rendering", 1, "")
+create_skill_if_needed(section14, :gold, "Use advanced rendering techniques (reflections, highlights, shadows)", 2, "")
+create_skill_if_needed(section14, :gold, "Sketch complex forms and products accurately from different angles", 3, "")
+create_skill_if_needed(section14, :gold, "Communicate design intent effectively through visual communication", 4, "")
 
 puts "✅ Created Section: #{section14.name} with #{section14.skills.count} skills"
 
@@ -519,27 +519,27 @@ section16 = Section.find_or_create_by!(name: "CAD Software") do |s|
   s.description = "Computer-Aided Design allows precise 3D modeling and design."
   s.icon = "💻"
   s.position = 16
-  s.experiences_and_outcomes = "TCH 2-09b, TCH 2-11a, TCH 3-09b, TCH 3-11a, TCH 4-09b, TCH 4-11a"
+  s.experiences_and_outcomes = "TCH 2-11a, TCH 3-11a, TCH 4-11a"
 end
 
 # Bronze Skills (Level 2)
 create_skill_if_needed(section16, :bronze, "Navigate the CAD software interface and tools", 1, "TCH 2-11a")
 create_skill_if_needed(section16, :bronze, "Create basic 2D shapes using drawing tools", 2, "TCH 2-11a")
-create_skill_if_needed(section16, :bronze, "Create simple 3D forms using basic modeling tools", 3, "TCH 2-09b, TCH 2-11a")
+create_skill_if_needed(section16, :bronze, "Create simple 3D forms using basic modeling tools", 3, "TCH 2-11a")
 create_skill_if_needed(section16, :bronze, "Save, export, and organize CAD files", 4, "TCH 2-11a")
 
 # Silver Skills (Level 3)
 create_skill_if_needed(section16, :silver, "Use constraints and dimensions to create accurate models", 1, "TCH 3-11a")
-create_skill_if_needed(section16, :silver, "Create more complex 3D models using extrude, revolve, and sweep", 2, "TCH 3-09b, TCH 3-11a")
-create_skill_if_needed(section16, :silver, "Apply materials, colors, and basic rendering to models", 3, "TCH 3-09b")
+create_skill_if_needed(section16, :silver, "Create more complex 3D models using extrude, revolve, and sweep", 2, "TCH 3-11a")
+create_skill_if_needed(section16, :silver, "Apply materials, colors, and basic rendering to models", 3, "")
 create_skill_if_needed(section16, :silver, "Create assembly models with multiple parts", 4, "TCH 3-11a")
 create_skill_if_needed(section16, :silver, "Generate orthographic views from 3D models", 5, "TCH 3-11a")
 
 # Gold Skills (Level 4)
 create_skill_if_needed(section16, :gold, "Use advanced modeling techniques (loft, shell, pattern)", 1, "TCH 4-11a")
-create_skill_if_needed(section16, :gold, "Create parametric models that can be easily modified", 2, "TCH 4-09b, TCH 4-11a")
+create_skill_if_needed(section16, :gold, "Create parametric models that can be easily modified", 2, "TCH 4-11a")
 create_skill_if_needed(section16, :gold, "Prepare CAD files for manufacture (3D printing, laser cutting)", 3, "TCH 4-11a")
-create_skill_if_needed(section16, :gold, "Create professional presentation renders and animations", 4, "TCH 4-09b")
+create_skill_if_needed(section16, :gold, "Create professional presentation renders and animations", 4, "")
 
 puts "✅ Created Section: #{section16.name} with #{section16.skills.count} skills"
 
@@ -549,27 +549,27 @@ section17 = Section.find_or_create_by!(name: "Graphic Design Software") do |s|
   s.description = "Graphic design software creates visual communication for products and presentations."
   s.icon = "🎨"
   s.position = 17
-  s.experiences_and_outcomes = "TCH 2-09b, EXA 2-02a, TCH 3-09b, EXA 3-02a, TCH 4-09b, EXA 4-02a"
+  s.experiences_and_outcomes = ""
 end
 
 # Bronze Skills (Level 2)
-create_skill_if_needed(section17, :bronze, "Navigate graphic design software interface", 1, "TCH 2-09b")
-create_skill_if_needed(section17, :bronze, "Use basic tools (selection, shapes, text, color)", 2, "EXA 2-02a")
-create_skill_if_needed(section17, :bronze, "Import and place images in designs", 3, "TCH 2-09b")
-create_skill_if_needed(section17, :bronze, "Create simple graphics for projects (logos, labels)", 4, "TCH 2-09b, EXA 2-02a")
+create_skill_if_needed(section17, :bronze, "Navigate graphic design software interface", 1, "")
+create_skill_if_needed(section17, :bronze, "Use basic tools (selection, shapes, text, color)", 2, "")
+create_skill_if_needed(section17, :bronze, "Import and place images in designs", 3, "")
+create_skill_if_needed(section17, :bronze, "Create simple graphics for projects (logos, labels)", 4, "")
 
 # Silver Skills (Level 3)
-create_skill_if_needed(section17, :silver, "Use layers to organize complex designs", 1, "TCH 3-09b")
-create_skill_if_needed(section17, :silver, "Apply design principles (alignment, contrast, hierarchy)", 2, "EXA 3-02a")
-create_skill_if_needed(section17, :silver, "Edit and manipulate images (crop, resize, adjust)", 3, "TCH 3-09b")
-create_skill_if_needed(section17, :silver, "Create graphics for different purposes (packaging, posters, presentations)", 4, "TCH 3-09b, EXA 3-02a")
-create_skill_if_needed(section17, :silver, "Export files in appropriate formats for different uses", 5, "TCH 3-09b")
+create_skill_if_needed(section17, :silver, "Use layers to organize complex designs", 1, "")
+create_skill_if_needed(section17, :silver, "Apply design principles (alignment, contrast, hierarchy)", 2, "")
+create_skill_if_needed(section17, :silver, "Edit and manipulate images (crop, resize, adjust)", 3, "")
+create_skill_if_needed(section17, :silver, "Create graphics for different purposes (packaging, posters, presentations)", 4, "")
+create_skill_if_needed(section17, :silver, "Export files in appropriate formats for different uses", 5, "")
 
 # Gold Skills (Level 4)
-create_skill_if_needed(section17, :gold, "Create professional, cohesive visual identities", 1, "TCH 4-09b, EXA 4-02a")
-create_skill_if_needed(section17, :gold, "Use advanced tools (pen tool, masks, effects)", 2, "EXA 4-02a")
-create_skill_if_needed(section17, :gold, "Understand color theory and typography in design", 3, "EXA 4-02a")
-create_skill_if_needed(section17, :gold, "Produce print-ready and web-ready graphics to professional standards", 4, "TCH 4-09b")
+create_skill_if_needed(section17, :gold, "Create professional, cohesive visual identities", 1, "")
+create_skill_if_needed(section17, :gold, "Use advanced tools (pen tool, masks, effects)", 2, "")
+create_skill_if_needed(section17, :gold, "Understand color theory and typography in design", 3, "")
+create_skill_if_needed(section17, :gold, "Produce print-ready and web-ready graphics to professional standards", 4, "")
 
 puts "✅ Created Section: #{section17.name} with #{section17.skills.count} skills"
 
@@ -579,24 +579,24 @@ section18 = Section.find_or_create_by!(name: "Laser Cutting") do |s|
   s.description = "Laser cutting allows precise cutting and engraving of materials."
   s.icon = "⚡"
   s.position = 18
-  s.experiences_and_outcomes = "TCH 2-09b, TCH 2-11a, TCH 2-12a, TCH 3-09b, TCH 3-11a, TCH 3-12a, TCH 4-09b, TCH 4-11a, TCH 4-12a"
+  s.experiences_and_outcomes = "TCH 2-11a, TCH 2-12a, TCH 3-11a, TCH 3-12a, TCH 4-11a, TCH 4-12a"
 end
 
 # Bronze Skills (Level 2)
-create_skill_if_needed(section18, :bronze, "Understand how laser cutting works and what materials can be used", 1, "TCH 2-13a")
-create_skill_if_needed(section18, :bronze, "Prepare simple 2D designs for laser cutting", 2, "TCH 2-09b, TCH 2-11a")
+create_skill_if_needed(section18, :bronze, "Understand how laser cutting works and what materials can be used", 1, "")
+create_skill_if_needed(section18, :bronze, "Prepare simple 2D designs for laser cutting", 2, "TCH 2-11a")
 create_skill_if_needed(section18, :bronze, "Understand difference between cutting and engraving", 3, "TCH 2-12a")
 create_skill_if_needed(section18, :bronze, "Follow safety procedures when around laser cutter", 4, "TCH 2-12a")
 
 # Silver Skills (Level 3)
 create_skill_if_needed(section18, :silver, "Create designs with correct line weights for cutting vs engraving", 1, "TCH 3-11a")
-create_skill_if_needed(section18, :silver, "Design parts that account for material thickness (kerf)", 2, "TCH 3-09b, TCH 3-11a")
+create_skill_if_needed(section18, :silver, "Design parts that account for material thickness (kerf)", 2, "TCH 3-11a")
 create_skill_if_needed(section18, :silver, "Optimize designs to minimize material waste", 3, "TCH 3-10a")
 create_skill_if_needed(section18, :silver, "Assist with laser cutter operation under supervision", 4, "TCH 3-12a")
 
 # Gold Skills (Level 4)
-create_skill_if_needed(section18, :gold, "Create complex designs with multiple cutting and engraving operations", 1, "TCH 4-09b, TCH 4-11a")
-create_skill_if_needed(section18, :gold, "Design interlocking parts and assemblies for laser cutting", 2, "TCH 4-09b")
+create_skill_if_needed(section18, :gold, "Create complex designs with multiple cutting and engraving operations", 1, "TCH 4-11a")
+create_skill_if_needed(section18, :gold, "Design interlocking parts and assemblies for laser cutting", 2, "")
 create_skill_if_needed(section18, :gold, "Operate laser cutter independently with teacher approval", 3, "TCH 4-12a")
 create_skill_if_needed(section18, :gold, "Troubleshoot cutting problems and adjust settings accordingly", 4, "TCH 4-10a, TCH 4-12a")
 
@@ -608,23 +608,23 @@ section19 = Section.find_or_create_by!(name: "3D Printing") do |s|
   s.description = "3D printing transforms digital designs into physical objects."
   s.icon = "🖨️"
   s.position = 19
-  s.experiences_and_outcomes = "TCH 2-09b, TCH 2-11a, TCH 2-12a, TCH 3-09b, TCH 3-11a, TCH 3-12a, TCH 4-09b, TCH 4-11a, TCH 4-12a"
+  s.experiences_and_outcomes = "TCH 2-11a, TCH 2-12a, TCH 3-11a, TCH 3-12a, TCH 4-11a, TCH 4-12a"
 end
 
 # Bronze Skills (Level 2)
-create_skill_if_needed(section19, :bronze, "Understand how 3D printing works and what it can make", 1, "TCH 2-13a")
-create_skill_if_needed(section19, :bronze, "Prepare simple 3D models for printing", 2, "TCH 2-09b, TCH 2-11a")
+create_skill_if_needed(section19, :bronze, "Understand how 3D printing works and what it can make", 1, "")
+create_skill_if_needed(section19, :bronze, "Prepare simple 3D models for printing", 2, "TCH 2-11a")
 create_skill_if_needed(section19, :bronze, "Understand basic print settings (layer height, infill)", 3, "TCH 2-12a")
 create_skill_if_needed(section19, :bronze, "Follow safety procedures when around 3D printers", 4, "TCH 2-12a")
 
 # Silver Skills (Level 3)
 create_skill_if_needed(section19, :silver, "Export 3D models in correct format (STL) with appropriate scale", 1, "TCH 3-11a")
 create_skill_if_needed(section19, :silver, "Use slicing software to prepare models for printing", 2, "TCH 3-12a")
-create_skill_if_needed(section19, :silver, "Design models that account for print orientation and supports", 3, "TCH 3-09b")
+create_skill_if_needed(section19, :silver, "Design models that account for print orientation and supports", 3, "")
 create_skill_if_needed(section19, :silver, "Assist with 3D printer operation and bed leveling under supervision", 4, "TCH 3-12a")
 
 # Gold Skills (Level 4)
-create_skill_if_needed(section19, :gold, "Design models optimized for 3D printing (wall thickness, overhangs)", 1, "TCH 4-09b")
+create_skill_if_needed(section19, :gold, "Design models optimized for 3D printing (wall thickness, overhangs)", 1, "")
 create_skill_if_needed(section19, :gold, "Adjust advanced print settings for different materials and quality", 2, "TCH 4-12a")
 create_skill_if_needed(section19, :gold, "Operate 3D printer independently with teacher approval", 3, "TCH 4-12a")
 create_skill_if_needed(section19, :gold, "Troubleshoot print failures and perform basic printer maintenance", 4, "TCH 4-10a, TCH 4-12a")

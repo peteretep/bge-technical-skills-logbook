@@ -40,8 +40,7 @@
               <% skill.experiences_outcomes.each do |eo| %>
                 <span class="inline-block px-2 py-0.5 bg-purple-100 text-purple-700 text-xs rounded cursor-help mr-1"
                       data-controller="tooltip"
-                      data-tooltip-content-value="<%= eo.description %>"
-                      title="<%= eo.description %>">
+                      data-tooltip-content-value="<%= eo.description %>">
                   <%= eo.code %>
                 </span>
               <% end %>
