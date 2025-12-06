@@ -1,0 +1,144 @@
+<!-- app/views/curriculum/index.html.erb -->
+
+<div class="space-y-6">
+  <%= render 'shared/breadcrumb', page_title: "Curriculum Overview" %>
+
+  <!-- Header -->
+  <div class="bg-white rounded-lg shadow-md p-6 border border-gray-200">
+    <h1 class="text-4xl font-bold text-gray-900 mb-2">Curriculum Overview</h1>
+    <p class="text-gray-600">Scottish Curriculum for Excellence - Technologies</p>
+  </div>
+
+  <!-- Statistics -->
+  <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+    <div class="bg-white rounded-lg shadow-md p-6 border border-gray-200">
+      <div class="text-3xl font-bold text-primary"><%= @total_skills %></div>
+      <div class="text-sm text-gray-600 mt-1">Total Skills</div>
+    </div>
+    <div class="bg-orange-50 rounded-lg shadow-md p-6 border border-orange-200">
+      <div class="text-3xl font-bold text-orange-600">🥉 <%= @skills_by_level[:bronze] %></div>
+      <div class="text-sm text-orange-700 mt-1">Bronze Skills</div>
+    </div>
+    <div class="bg-gray-100 rounded-lg shadow-md p-6 border border-gray-300">
+      <div class="text-3xl font-bold text-gray-700">🥈 <%= @skills_by_level[:silver] %></div>
+      <div class="text-sm text-gray-600 mt-1">Silver Skills</div>
+    </div>
+    <div class="bg-yellow-50 rounded-lg shadow-md p-6 border border-yellow-200">
+      <div class="text-3xl font-bold text-yellow-600">🥇 <%= @skills_by_level[:gold] %></div>
+      <div class="text-sm text-yellow-700 mt-1">Gold Skills</div>
+    </div>
+  </div>
+
+  <!-- Categories -->
+  <% @sections_by_category.each do |category, sections| %>
+    <div class="bg-white rounded-xl shadow-md border-l-4 <%= @categories[category][:border] %>">
+      <div class="p-6">
+        <!-- Category Header -->
+        <div class="flex items-center gap-3 mb-6">
+          <div class="text-4xl"><%= @categories[category][:icon] %></div>
+          <div>
+            <h2 class="text-2xl font-bold text-gray-900"><%= category %></h2>
+            <p class="text-sm text-gray-600"><%= @categories[category][:description] %></p>
+            <p class="text-xs text-gray-500 mt-1"><%= sections.count %> sections</p>
+          </div>
+        </div>
+
+        <!-- Sections -->
+        <div class="space-y-6">
+          <% sections.each do |section| %>
+            <div class="border border-gray-200 rounded-lg overflow-hidden">
+              <!-- Section Header -->
+              <div class="bg-gray-50 px-4 py-3 border-b border-gray-200">
+                <div class="flex items-center gap-3">
+                  <span class="text-2xl"><%= section.icon %></span>
+                  <div class="flex-1">
+                    <h3 class="font-semibold text-lg text-gray-900"><%= section.name %></h3>
+                    <% if section.experiences_outcomes.any? %>
+                      <div class="flex gap-1 mt-2 flex-wrap">
+                        <% section.experiences_outcomes.each do |eo| %>
+                          <span class="inline-block px-2 py-0.5 bg-purple-100 text-purple-700 text-xs rounded font-medium cursor-help"
+                                data-controller="tooltip"
+                                data-tooltip-content-value="<%= eo.description %>">
+                            <%= eo.code %>
+                          </span>
+                        <% end %>
+                      </div>
+                    <% end %>
+                  </div>
+                  <div class="text-sm text-gray-600">
+                    <%= section.skills.count %> skills
+                  </div>
+                </div>
+              </div>
+
+              <!-- Skills by Level -->
+              <div class="p-4">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                  <!-- Bronze Skills -->
+                  <div>
+                    <div class="flex items-center gap-2 mb-3">
+                      <span class="text-lg">🥉</span>
+                      <h4 class="font-semibold text-orange-700">Bronze Level</h4>
+                      <span class="text-xs text-gray-500">(<%= section.bronze_skills.count %>)</span>
+                    </div>
+                    <ul class="space-y-2">
+                      <% section.bronze_skills.each do |skill| %>
+                        <li class="text-sm text-gray-700 flex items-start gap-2">
+                          <span class="text-orange-500 mt-1">•</span>
+                          <span><%= skill.description %></span>
+                        </li>
+                      <% end %>
+                      <% if section.bronze_skills.empty? %>
+                        <li class="text-sm text-gray-400 italic">No bronze skills</li>
+                      <% end %>
+                    </ul>
+                  </div>
+
+                  <!-- Silver Skills -->
+                  <div>
+                    <div class="flex items-center gap-2 mb-3">
+                      <span class="text-lg">🥈</span>
+                      <h4 class="font-semibold text-gray-700">Silver Level</h4>
+                      <span class="text-xs text-gray-500">(<%= section.silver_skills.count %>)</span>
+                    </div>
+                    <ul class="space-y-2">
+                      <% section.silver_skills.each do |skill| %>
+                        <li class="text-sm text-gray-700 flex items-start gap-2">
+                          <span class="text-gray-500 mt-1">•</span>
+                          <span><%= skill.description %></span>
+                        </li>
+                      <% end %>
+                      <% if section.silver_skills.empty? %>
+                        <li class="text-sm text-gray-400 italic">No silver skills</li>
+                      <% end %>
+                    </ul>
+                  </div>
+
+                  <!-- Gold Skills -->
+                  <div>
+                    <div class="flex items-center gap-2 mb-3">
+                      <span class="text-lg">🥇</span>
+                      <h4 class="font-semibold text-yellow-700">Gold Level</h4>
+                      <span class="text-xs text-gray-500">(<%= section.gold_skills.count %>)</span>
+                    </div>
+                    <ul class="space-y-2">
+                      <% section.gold_skills.each do |skill| %>
+                        <li class="text-sm text-gray-700 flex items-start gap-2">
+                          <span class="text-yellow-500 mt-1">•</span>
+                          <span><%= skill.description %></span>
+                        </li>
+                      <% end %>
+                      <% if section.gold_skills.empty? %>
+                        <li class="text-sm text-gray-400 italic">No gold skills</li>
+                      <% end %>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>

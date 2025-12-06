@@ -1,0 +1,282 @@
+<!-- app/views/pages/about.html.erb -->
+
+<div class="max-w-4xl mx-auto space-y-6 px-4 py-6">
+  <%= render 'shared/breadcrumb', page_title: "About" %>
+
+  <!-- Header -->
+  <div class="bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg shadow-md p-8 text-white">
+    <h1 class="text-4xl font-bold mb-3">Skills Logbook</h1>
+    <p class="text-blue-100 text-lg">A simpler approach to tracking Broad General Education in Technologies</p>
+  </div>
+
+  <!-- Overview Section -->
+  <div class="bg-white rounded-lg shadow-md p-8 border border-gray-200">
+    <h2 class="text-2xl font-bold text-gray-900 mb-4">Overview</h2>
+
+    <div class="prose prose-lg max-w-none space-y-4 text-gray-700">
+      <p>
+        Skills Logbook provides a practical, skills-based approach to tracking student progress in Technologies
+        education within the Scottish Curriculum for Excellence framework.
+      </p>
+
+      <p>
+        The system draws inspiration from established competency-based models such as Scouts badges and RYA
+        qualifications, emphasizing clear skill demonstration over subjective grading. Students progress through
+        bronze, silver, and gold skill levels across curriculum areas, with badges awarded when proficiency
+        thresholds are met.
+      </p>
+
+      <h3 class="text-xl font-semibold text-gray-900 mt-6 mb-3">Educational Approach</h3>
+
+      <p>
+        Rather than focusing on comparative assessment, this system prioritizes <strong>evidence of skill
+        demonstration</strong>. Teachers identify relevant skills aligned with project work and mark them as
+        demonstrated when students successfully complete activities requiring those competencies.
+      </p>
+
+      <div class="bg-blue-50 border-l-4 border-blue-500 p-4 my-6">
+        <p class="text-blue-900">
+          <strong>Key Principle:</strong> The system tracks that students have successfully demonstrated a skill,
+          providing clear evidence of curriculum coverage without requiring subjective quality judgments on
+          creative project work.
+        </p>
+      </div>
+
+      <h3 class="text-xl font-semibold text-gray-900 mt-6 mb-3">Addressing BGE Tracking Challenges</h3>
+
+      <p>
+        This approach emerged from recognizing the need for a more consistent and accessible method of tracking
+        BGE progress in Technologies. The logbook format provides clear visibility of curriculum coverage while
+        remaining practical for classroom implementation.
+      </p>
+
+      <p>
+        By organizing skills into topic areas and progressive levels, the system supports both formative
+        assessment during projects and summative reporting requirements, while maintaining alignment with
+        Experiences and Outcomes.
+      </p>
+
+      <h3 class="text-xl font-semibold text-gray-900 mt-6 mb-3">Implementation</h3>
+
+      <p>
+        Teachers select appropriate skills at the beginning of a project or unit. As students work, demonstrated
+        competencies are marked off. This allows for differentiation—most students may demonstrate bronze-level
+        skills during a project, while some may show proficiency at silver or gold levels through extended work
+        or exceptional application.
+      </p>
+
+      <p>
+        When students have demonstrated 75% or more of the skills within a topic area at a particular level,
+        they become eligible for the corresponding badge, providing both motivation and clear progression markers.
+      </p>
+    </div>
+  </div>
+
+  <!-- Features Section -->
+  <div class="bg-white rounded-lg shadow-md p-8 border border-gray-200">
+    <h2 class="text-2xl font-bold text-gray-900 mb-4">How It Works</h2>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div class="flex gap-4">
+        <div class="flex-shrink-0">
+          <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center text-2xl">
+            ✓
+          </div>
+        </div>
+        <div>
+          <h3 class="font-semibold text-gray-900 mb-1">Track Skills</h3>
+          <p class="text-sm text-gray-600">Mark specific skills as demonstrated when students complete projects or activities</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0">
+          <div class="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center text-2xl">
+            🥉
+          </div>
+        </div>
+        <div>
+          <h3 class="font-semibold text-gray-900 mb-1">Award Badges</h3>
+          <p class="text-sm text-gray-600">When 75%+ skills are demonstrated, award bronze, silver, or gold badges</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0">
+          <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center text-2xl">
+            📊
+          </div>
+        </div>
+        <div>
+          <h3 class="font-semibold text-gray-900 mb-1">Monitor Progress</h3>
+          <p class="text-sm text-gray-600">View student progress across all curriculum areas and skill levels</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-shrink-0">
+          <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center text-2xl">
+            📖
+          </div>
+        </div>
+        <div>
+          <h3 class="font-semibold text-gray-900 mb-1">Logbook Style</h3>
+          <p class="text-sm text-gray-600">Simple, clear tracking - inspired by Scouts and RYA logbooks</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Benefits Section -->
+  <div class="bg-white rounded-lg shadow-md p-8 border border-gray-200">
+    <h2 class="text-2xl font-bold text-gray-900 mb-4">Benefits</h2>
+
+    <div class="space-y-4">
+      <div class="flex gap-3">
+        <div class="flex-shrink-0 text-green-600 mt-1">✓</div>
+        <div>
+          <h4 class="font-semibold text-gray-900">Clear Curriculum Coverage</h4>
+          <p class="text-sm text-gray-600">Transparent tracking of which skills and Experiences & Outcomes have been addressed</p>
+        </div>
+      </div>
+
+      <div class="flex gap-3">
+        <div class="flex-shrink-0 text-green-600 mt-1">✓</div>
+        <div>
+          <h4 class="font-semibold text-gray-900">Practical Implementation</h4>
+          <p class="text-sm text-gray-600">Streamlined workflow suitable for workshop environments with multiple concurrent projects</p>
+        </div>
+      </div>
+
+      <div class="flex gap-3">
+        <div class="flex-shrink-0 text-green-600 mt-1">✓</div>
+        <div>
+          <h4 class="font-semibold text-gray-900">Student Motivation</h4>
+          <p class="text-sm text-gray-600">Badge system provides visible progression and achievement recognition</p>
+        </div>
+      </div>
+
+      <div class="flex gap-3">
+        <div class="flex-shrink-0 text-green-600 mt-1">✓</div>
+        <div>
+          <h4 class="font-semibold text-gray-900">Reporting Support</h4>
+          <p class="text-sm text-gray-600">Generates clear data for BGE tracking and working level determination</p>
+        </div>
+      </div>
+
+      <div class="flex gap-3">
+        <div class="flex-shrink-0 text-green-600 mt-1">✓</div>
+        <div>
+          <h4 class="font-semibold text-gray-900">Differentiation</h4>
+          <p class="text-sm text-gray-600">Supports varied skill demonstration levels within single projects</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- About the Developer Section -->
+  <div class="bg-white rounded-lg shadow-md p-8 border border-gray-200">
+    <h2 class="text-2xl font-bold text-gray-900 mb-4">About the Developer</h2>
+
+    <div class="space-y-4 text-gray-700">
+      <p>
+        <strong>Peter Armstrong</strong> is a Technologies teacher currently working at Rothesay Academy
+        for Argyll and Bute Council. His teaching experience spans diverse educational contexts across
+        Scotland, having previously worked in Arran, Shetland, and Glasgow.
+      </p>
+
+      <p>
+        This varied experience across different local authorities provided firsthand insight into the
+        inconsistencies in BGE tracking approaches, informing the development of this standardized yet
+        flexible system.
+      </p>
+
+      <p>
+        Prior to entering education, Peter worked in engineering, software development, and adventure sports
+        industries. This background in technical fields and competency-based instruction (particularly from
+        adventure sports qualifications) shaped the practical, skills-focused approach embodied in this
+        tracking system.
+      </p>
+
+      <p class="text-sm text-gray-600 italic">
+        The combination of cross-sector experience and multi-authority teaching positions uniquely positioned
+        the development of a system that addresses real classroom challenges while remaining technically robust
+        and educationally sound.
+      </p>
+    </div>
+  </div>
+
+  <!-- Development Status Section -->
+  <div class="bg-amber-50 rounded-lg shadow-md p-8 border-2 border-amber-200">
+    <div class="flex gap-3 mb-4">
+      <svg class="w-6 h-6 text-amber-600 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
+      </svg>
+      <h2 class="text-2xl font-bold text-gray-900">Development Status</h2>
+    </div>
+
+    <div class="space-y-3 text-gray-700">
+      <p>
+        <strong>This system is currently in active development and should be considered a prototype.</strong>
+        While it is being used in production environments, users should be aware of the following:
+      </p>
+
+      <ul class="list-disc list-inside space-y-2 ml-4">
+        <li>Features and functionality may change as the system evolves</li>
+        <li>Users are responsible for maintaining their own backups of critical data</li>
+        <li>The system is provided "as is" without warranty of any kind</li>
+        <li>Bug reports and feature requests are welcomed and appreciated</li>
+      </ul>
+
+      <p class="text-sm italic pt-2">
+        Schools and teachers using this system should ensure they have appropriate data management procedures
+        in place and understand that this is an independently developed tool, not officially endorsed or
+        supported by Education Scotland or local authorities.
+      </p>
+    </div>
+  </div>
+
+  <!-- Contact Section -->
+  <div class="bg-white rounded-lg shadow-md p-8 border border-gray-200">
+    <h2 class="text-2xl font-bold text-gray-900 mb-4">Contact & Collaboration</h2>
+
+    <div class="space-y-4">
+      <p class="text-gray-700">
+        This system was developed as an open-source project to support Technologies teachers in implementing
+        practical, skills-based BGE tracking. It continues to evolve based on feedback from practicing educators.
+      </p>
+
+      <div class="flex items-center gap-3 pt-4">
+        <svg class="w-6 h-6 text-gray-600" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"></path>
+        </svg>
+        <div>
+          <div class="text-sm text-gray-600">Project Repository</div>
+          <a href="https://github.com/petesarms" target="_blank" rel="noopener noreferrer"
+             class="text-blue-600 hover:text-blue-800 font-medium">
+            github.com/petesarms
+          </a>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-3">
+        <svg class="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+        </svg>
+        <div>
+          <div class="text-sm text-gray-600">Contact</div>
+          <a href="mailto:petesarms@proton.me"
+             class="text-blue-600 hover:text-blue-800 font-medium">
+            petesarms@proton.me
+          </a>
+        </div>
+      </div>
+
+      <div class="mt-6 pt-6 border-t border-gray-200">
+        <p class="text-sm text-gray-600">
+          Feedback and suggestions from Technologies educators are welcome as the system continues to develop.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

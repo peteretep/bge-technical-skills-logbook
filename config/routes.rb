@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   root "dashboard#index"
 
   post "dashboard/create_classroom", to: "dashboard#create", as: "create_classroom"
+  get "curriculum", to: "curriculum#index", as: "curriculum"
+  get "about", to: "pages#about", as: "about"
 
   resources :classrooms do
     resources :students, only: [ :create, :destroy ]
