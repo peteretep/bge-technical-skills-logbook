@@ -32,11 +32,22 @@ export default class extends Controller {
   }
 
   toggleAll() {
-    // Toggle all sections in this category
+    // Check if any sections are expanded
     const sections = this.element.querySelectorAll('[data-controller="collapse"]')
-    sections.forEach(section => {
-      const controller = this.application.getControllerForElementAndIdentifier(section, "collapse")
-      if (controller) controller.toggle()
+    const controllers = Array.from(sections).map(section =>
+      this.application.getControllerForElementAndIdentifier(section, "collapse")
+    ).filter(controller => controller !== null)
+
+    // Determine if we should collapse or expand all
+    const anyExpanded = controllers.some(controller => controller.expandedValue)
+
+    // Collapse all if any are expanded, otherwise expand all
+    controllers.forEach(controller => {
+      if (anyExpanded) {
+        controller.collapse()
+      } else {
+        controller.expand()
+      }
     })
   }
 }

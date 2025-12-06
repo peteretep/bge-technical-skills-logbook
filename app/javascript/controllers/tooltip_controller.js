@@ -83,7 +83,7 @@ export default class extends Controller {
       <div class="bg-white rounded-lg shadow-xl max-w-lg w-full mx-4 p-6">
         <div class="flex justify-between items-start mb-4">
           <h3 class="text-lg font-semibold text-gray-900">Scottish Curriculum for Excellence</h3>
-          <button class="text-gray-400 hover:text-gray-600 text-2xl leading-none" data-action="click->tooltip#closeModal">
+          <button class="close-modal-btn text-gray-400 hover:text-gray-600 text-2xl leading-none">
             &times;
           </button>
         </div>
@@ -96,7 +96,7 @@ export default class extends Controller {
           </p>
         </div>
         <div class="flex justify-end">
-          <button class="px-4 py-2 bg-gray-200 hover:bg-gray-300 text-gray-800 rounded" data-action="click->tooltip#closeModal">
+          <button class="close-modal-btn px-4 py-2 bg-gray-200 hover:bg-gray-300 text-gray-800 rounded">
             Close
           </button>
         </div>
@@ -104,6 +104,12 @@ export default class extends Controller {
     `
 
     document.body.appendChild(modal)
+
+    // Add click handlers to close buttons
+    const closeButtons = modal.querySelectorAll('.close-modal-btn')
+    closeButtons.forEach(button => {
+      button.addEventListener('click', () => this.closeModal())
+    })
 
     // Close on background click
     modal.addEventListener('click', (e) => {
