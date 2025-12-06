@@ -2,8 +2,33 @@
 
 class StudentsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_student
-  before_action :authorize_student
+  before_action :set_classroom, only: [ :create, :destroy ]
+  before_action :set_student, except: [ :create ]
+  before_action :authorize_student, except: [ :create ]
+  before_action :authorize_classroom, only: [ :create, :destroy ]
+
+  def create
+    @student = @classroom.students.build(student_params)
+
+    if @student.save
+      redirect_to classroom_path(@classroom), notice: "Student added successfully."
+    else
+      @students = @classroom.students.order(:last_name, :first_name)
+      @sections = Section.ordered.includes(:skills)
+      @total_skills_by_level = {
+        bronze: Skill.bronze.count,
+        silver: Skill.silver.count,
+        gold: Skill.gold.count
+      }
+      render "classrooms/show", status: :unprocessable_entity
+    end
+  end
+
+  def destroy
+    @student = @classroom.students.find(params[:id])
+    @student.destroy
+    redirect_to classroom_path(@classroom), notice: "Student removed successfully."
+  end
 
   def show
     # Group sections by category
@@ -72,14 +97,28 @@ class StudentsController < ApplicationController
 
   private
 
+  def set_classroom
+    @classroom = current_user.classrooms.find(params[:classroom_id])
+  end
+
   def set_student
     @student = Student.find(params[:id])
+  end
+
+  def authorize_classroom
+    unless @classroom.user == current_user
+      redirect_to dashboard_path, alert: "You don't have access to that classroom."
+    end
   end
 
   def authorize_student
     unless @student.classroom.user == current_user
       redirect_to dashboard_path, alert: "You don't have access to that student."
     end
+  end
+
+  def student_params
+    params.require(:student).permit(:first_name, :last_name)
   end
 
   def sections_started_count(student, category)

@@ -1,7 +1,7 @@
 class ClassroomsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_classroom, only: [ :show, :bulk_mark_skills, :bulk_mark ]
-  before_action :authorize_classroom_owner, only: [ :show, :create_student, :destroy_student, :bulk_mark_skills, :bulk_mark ]
+  before_action :authorize_classroom_owner, only: [ :show, :bulk_mark_skills, :bulk_mark ]
 
   def show
     @students = @classroom.students
@@ -86,25 +86,6 @@ class ClassroomsController < ApplicationController
     }
   end
 
-  def create_student
-    @classroom = current_user.classrooms.find(params[:id])
-    @student = @classroom.students.build(student_params)
-
-    if @student.save
-      redirect_to classroom_path(@classroom), notice: "Student added successfully."
-    else
-      @students = @classroom.students.order(:last_name, :first_name)
-      render :show, status: :unprocessable_entity
-    end
-  end
-
-  def destroy_student
-    @classroom = current_user.classrooms.find(params[:id])
-    @student = @classroom.students.find(params[:student_id])
-    @student.destroy
-    redirect_to classroom_path(@classroom), notice: "Student removed successfully."
-  end
-
   private
 
   def set_classroom
@@ -116,9 +97,5 @@ class ClassroomsController < ApplicationController
     unless classroom.user == current_user
       redirect_to root_path, alert: "You do not have permission to access this classroom."
     end
-  end
-
-  def student_params
-    params.require(:student).permit(:first_name, :last_name)
   end
 end
