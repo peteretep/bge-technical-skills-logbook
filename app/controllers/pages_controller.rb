@@ -1,5 +1,5 @@
 class PagesController < ApplicationController
-  before_action :authenticate_user!
+  # About page is public - no authentication required
 
   def about
   end
