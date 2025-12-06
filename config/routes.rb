@@ -10,6 +10,9 @@ Rails.application.routes.draw do
     member do
       post :bulk_mark_skills
       get :bulk_mark
+      get :viable_badges
+      post :award_viable_badge
+      post :award_all_viable_badges
     end
   end
 

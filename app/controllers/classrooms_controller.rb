@@ -1,7 +1,7 @@
 class ClassroomsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_classroom, only: [ :show, :bulk_mark_skills, :bulk_mark ]
-  before_action :authorize_classroom_owner, only: [ :show, :bulk_mark_skills, :bulk_mark ]
+  before_action :set_classroom, only: [ :show, :bulk_mark_skills, :bulk_mark, :viable_badges, :award_viable_badge, :award_all_viable_badges ]
+  before_action :authorize_classroom_owner, only: [ :show, :bulk_mark_skills, :bulk_mark, :viable_badges, :award_viable_badge, :award_all_viable_badges ]
 
   def show
     @students = @classroom.students
@@ -84,6 +84,74 @@ class ClassroomsController < ApplicationController
         total: @sections_by_category["Graphics"]&.count || 0
       }
     }
+  end
+
+  def viable_badges
+    @students = @classroom.students.includes(:badges, student_skills: :skill).order(:last_name, :first_name)
+    @sections = Section.ordered.includes(:skills)
+
+    # Build list of viable badges: student, section, level combinations where student is ready
+    @viable_badges = []
+
+    @students.each do |student|
+      @sections.each do |section|
+        [:bronze, :silver, :gold].each do |level|
+          if student.ready_for_badge?(section, level) && !student.has_badge?(section, level)
+            @viable_badges << {
+              student: student,
+              section: section,
+              level: level,
+              level_name: level.to_s.capitalize,
+              level_icon: level == :bronze ? '🥉' : (level == :silver ? '🥈' : '🥇')
+            }
+          end
+        end
+      end
+    end
+  end
+
+  def award_viable_badge
+    student = @classroom.students.find(params[:student_id])
+    section = Section.find(params[:section_id])
+    level = params[:level].to_sym
+
+    if student.ready_for_badge?(section, level) && !student.has_badge?(section, level)
+      Badge.create!(
+        student: student,
+        section: section,
+        level: level,
+        awarded_by: current_user,
+        awarded_at: Date.today
+      )
+      redirect_to viable_badges_classroom_path(@classroom), notice: "#{level.to_s.capitalize} badge awarded to #{student.full_name}!"
+    else
+      redirect_to viable_badges_classroom_path(@classroom), alert: "Badge cannot be awarded."
+    end
+  end
+
+  def award_all_viable_badges
+    awarded_count = 0
+    students = @classroom.students.includes(:badges, student_skills: :skill)
+    sections = Section.all
+
+    students.each do |student|
+      sections.each do |section|
+        [:bronze, :silver, :gold].each do |level|
+          if student.ready_for_badge?(section, level) && !student.has_badge?(section, level)
+            Badge.create!(
+              student: student,
+              section: section,
+              level: level,
+              awarded_by: current_user,
+              awarded_at: Date.today
+            )
+            awarded_count += 1
+          end
+        end
+      end
+    end
+
+    redirect_to viable_badges_classroom_path(@classroom), notice: "Awarded #{awarded_count} badge(s) successfully!"
   end
 
   private

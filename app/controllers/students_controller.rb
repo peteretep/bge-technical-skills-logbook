@@ -11,7 +11,7 @@ class StudentsController < ApplicationController
     @student = @classroom.students.build(student_params)
 
     if @student.save
-      redirect_to classroom_path(@classroom), notice: "Student added successfully."
+      redirect_to classroom_path(@classroom, add_student: true), notice: "Student added successfully."
     else
       @students = @classroom.students.order(:last_name, :first_name)
       @sections = Section.ordered.includes(:skills)

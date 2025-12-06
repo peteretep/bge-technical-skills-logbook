@@ -1,0 +1,157 @@
+<!-- app/views/classrooms/viable_badges.html.erb -->
+
+<div class="max-w-7xl mx-auto px-4 py-6 sm:px-6 lg:px-8">
+  <%= render 'shared/breadcrumb', classroom: @classroom, page_title: "Viable Badges" %>
+</div>
+
+<div class="bg-white border-b shadow-sm">
+  <div class="max-w-7xl mx-auto px-4 py-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between">
+      <div>
+        <h1 class="text-2xl font-bold text-gray-900">Viable Badges</h1>
+        <p class="text-sm text-gray-600">
+          Award badges to students who are ready
+        </p>
+      </div>
+      <% if @viable_badges.any? %>
+        <%= button_to "Award All Badges", award_all_viable_badges_classroom_path(@classroom),
+            method: :post,
+            data: { turbo_confirm: "Are you sure you want to award all #{@viable_badges.count} viable badge(s)?" },
+            class: "px-4 py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg font-semibold transition-colors" %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<div class="max-w-7xl mx-auto px-4 py-6 sm:px-6 lg:px-8">
+
+  <% if @viable_badges.empty? %>
+    <!-- Empty State -->
+    <div class="bg-white rounded-lg shadow-md p-12 text-center">
+      <div class="text-6xl mb-4">🏆</div>
+      <h2 class="text-2xl font-bold text-gray-900 mb-2">No Viable Badges</h2>
+      <p class="text-gray-600 mb-6">
+        None of your students are currently ready for any badges.
+        <br>Keep marking skills as demonstrated!
+      </p>
+      <%= link_to "Mark Skills", bulk_mark_classroom_path(@classroom),
+          class: "inline-block px-6 py-3 bg-primary hover:bg-primary/90 text-white rounded-lg font-semibold transition-colors" %>
+    </div>
+  <% else %>
+    <!-- Summary Card -->
+    <div class="bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl p-6 text-white shadow-md mb-6">
+      <div class="flex items-center justify-between">
+        <div>
+          <div class="text-sm opacity-90">Ready to Award</div>
+          <div class="text-4xl font-bold mt-1"><%= @viable_badges.count %></div>
+          <div class="text-xs opacity-75 mt-1">
+            <%= @viable_badges.count == 1 ? 'badge' : 'badges' %> across
+            <%= @viable_badges.map { |vb| vb[:student] }.uniq.count %>
+            <%= @viable_badges.map { |vb| vb[:student] }.uniq.count == 1 ? 'student' : 'students' %>
+          </div>
+        </div>
+        <div class="text-6xl">🏆</div>
+      </div>
+    </div>
+
+    <!-- Badges Table -->
+    <div class="bg-white rounded-lg shadow-md overflow-hidden">
+      <table class="min-w-full divide-y divide-gray-200">
+        <thead class="bg-gray-50">
+          <tr>
+            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              Student
+            </th>
+            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              Section
+            </th>
+            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              Level
+            </th>
+            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              Progress
+            </th>
+            <th class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
+              Action
+            </th>
+          </tr>
+        </thead>
+        <tbody class="bg-white divide-y divide-gray-200">
+          <% @viable_badges.each do |viable_badge| %>
+            <%
+              student = viable_badge[:student]
+              section = viable_badge[:section]
+              level = viable_badge[:level]
+              level_name = viable_badge[:level_name]
+              level_icon = viable_badge[:level_icon]
+
+              # Get skill counts for this section/level
+              total_skills = section.skills.where(level: Skill.levels[level]).count
+              demonstrated_skills = student.demonstrated_skills_for(section, level).count
+              percentage = total_skills.zero? ? 0 : (demonstrated_skills.to_f / total_skills * 100).round
+
+              # Badge color classes
+              badge_color = case level
+                when :bronze then "bg-orange-100 text-orange-800 border-orange-300"
+                when :silver then "bg-gray-100 text-gray-800 border-gray-300"
+                when :gold then "bg-yellow-100 text-yellow-800 border-yellow-300"
+              end
+
+              section_bg = case section.category
+                when "Design and Construct" then "bg-blue-50"
+                when "Materials" then "bg-green-50"
+                when "Graphics" then "bg-orange-50"
+                else "bg-gray-50"
+              end
+            %>
+            <tr class="hover:bg-gray-50 transition-colors">
+              <td class="px-6 py-4 whitespace-nowrap">
+                <%= link_to student.full_name, student_path(student),
+                    class: "text-blue-600 hover:text-blue-800 font-medium" %>
+              </td>
+              <td class="px-6 py-4">
+                <div class="flex items-center gap-2">
+                  <span class="text-lg"><%= section.icon %></span>
+                  <span class="font-medium text-gray-900"><%= section.name %></span>
+                </div>
+                <div class="text-xs text-gray-500 mt-1"><%= section.category %></div>
+              </td>
+              <td class="px-6 py-4 whitespace-nowrap">
+                <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium border <%= badge_color %>">
+                  <%= level_icon %> <%= level_name %>
+                </span>
+              </td>
+              <td class="px-6 py-4">
+                <div class="flex items-center gap-2">
+                  <div class="flex-1 bg-gray-200 rounded-full h-2 max-w-xs">
+                    <div class="bg-green-600 h-2 rounded-full" style="width: <%= percentage %>%"></div>
+                  </div>
+                  <span class="text-sm font-medium text-gray-700"><%= demonstrated_skills %>/<%= total_skills %></span>
+                </div>
+                <div class="text-xs text-gray-500 mt-1"><%= percentage %>% demonstrated</div>
+              </td>
+              <td class="px-6 py-4 text-right whitespace-nowrap">
+                <%= button_to "Award Badge",
+                    award_viable_badge_classroom_path(@classroom,
+                      student_id: student.id,
+                      section_id: section.id,
+                      level: level),
+                    method: :post,
+                    class: "inline-block px-4 py-2 bg-primary hover:bg-primary/90 text-white rounded-lg font-medium transition-colors text-sm" %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Legend -->
+    <div class="mt-6 bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <h3 class="text-sm font-semibold text-blue-900 mb-2">Badge Requirements</h3>
+      <p class="text-sm text-blue-800">
+        Students must demonstrate at least 75% of skills at a given level within a section to be eligible for that badge.
+      </p>
+    </div>
+  <% end %>
+
+</div>
